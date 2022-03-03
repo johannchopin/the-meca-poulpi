@@ -11,3 +11,6 @@ Checkout the doc https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight
 
 ### Grove-LED_Bar
 Checkout the doc https://wiki.seeedstudio.com/Grove-LED_Bar/
+
+### Grove-Servo
+Checkout the doc https://wiki.seeedstudio.com/Grove-Servo/

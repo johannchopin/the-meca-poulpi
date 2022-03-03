@@ -6,5 +6,8 @@ Install the [Grove_LED_Bar](https://github.com/Seeed-Studio/Grove_LED_Bar) libra
 
 ## Components
 
+### Grove_LCD_RGB_Backlight
+Checkout the doc https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight
+
 ### Grove-LED_Bar
 Checkout the doc https://wiki.seeedstudio.com/Grove-LED_Bar/

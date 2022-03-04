@@ -1,6 +1,14 @@
 #include "button.h"
 #include <Arduino.h>
 
+void Button::onClick(void (*callbackPtr)()){
+  this->callbackPtr = callbackPtr;
+}
+
+void Button::setup() {
+  pinMode(this->pin, INPUT);
+}
+
 void Button::loop()
 {
   // read the state of the switch into a local variable:
@@ -30,7 +38,7 @@ void Button::loop()
       // only toggle the LED if the new button state is HIGH
       if (this->buttonState == HIGH)
       {
-        Serial.println("on");
+        this->callbackPtr();
       }
     }
   }

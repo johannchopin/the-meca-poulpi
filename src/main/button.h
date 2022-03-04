@@ -6,11 +6,13 @@ class Button {
     Button(int pin) {
       this->pin = pin;
     };
-    void onClick();
+    void onClick(void (*callbackPtr)());
+    void (*callbackPtr)();
     void loop();
+    void setup();
 
   private:
-    int pin = 0;
+    int pin;
     int ledState = HIGH;
     int buttonState;
     int lastButtonState = LOW;

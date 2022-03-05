@@ -1,5 +1,6 @@
 #include "states.h"
 #include <Arduino.h>
+#include <algorithm>
 
 States::States() {}
 
@@ -7,6 +8,19 @@ const char *States::getCurrent()
 {
   return states[current];
 }
+
+void States::setState(char const *state) {
+  int matchingIndex = 0;
+  for(int i = 0; i<getStatesAmount(); i++) {
+    if (states[i] == state)
+    {
+      matchingIndex = i;
+    }
+  }
+
+  current = matchingIndex;
+}
+
 
 int States::getStatesAmount()
 {

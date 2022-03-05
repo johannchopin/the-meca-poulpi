@@ -21,7 +21,7 @@ void setup()
   stateSwitchButton->setup();
   screen->setup();
 
-  stateSwitchButton->onClick(std::bind(&States::goToNext, states));
+  stateSwitchButton->onClick(std::bind(&States::setState, states, "do_meditation"));
 }
 
 void loop()

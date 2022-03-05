@@ -9,9 +9,11 @@ const char *States::getCurrent()
   return states[current];
 }
 
-void States::setState(char const *state) {
+void States::setState(char const *state)
+{
   int matchingIndex = 0;
-  for(int i = 0; i<getStatesAmount(); i++) {
+  for (int i = 0; i < getStatesAmount(); i++)
+  {
     if (states[i] == state)
     {
       matchingIndex = i;
@@ -20,7 +22,6 @@ void States::setState(char const *state) {
 
   current = matchingIndex;
 }
-
 
 int States::getStatesAmount()
 {
@@ -37,5 +38,15 @@ void States::goToNext()
   else
   {
     current += 1;
+  }
+}
+
+void States::loop()
+{
+  bool shouldStateGoNext = (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
+  if (shouldStateGoNext)
+  {
+    goToNext();
+    lastStateChangeDebounceTime = millis();
   }
 }

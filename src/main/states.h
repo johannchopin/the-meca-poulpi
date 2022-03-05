@@ -7,7 +7,10 @@ public:
   void goToNext();
   int getStatesAmount();
   void setState(char const *state);
+  void loop();
 
 private:
   int current = 0;
+  unsigned long lastStateChangeDebounceTime = 0;
+  unsigned long debounceStateChangeDelay = 3000; // 3 seconds
 };

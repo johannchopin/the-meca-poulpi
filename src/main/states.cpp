@@ -1,22 +1,23 @@
 #include "states.h"
+#include <Arduino.h>
 
 States::States() {}
 
 const char* States::getCurrent() {
-  return this->states[this->current];
+  return states[current];
 }
 
 int States::getStatesAmount() {
-  return sizeof(this->states)/sizeof(this->states[0]);
+  return sizeof(states)/sizeof(states[0]);
 }
 
 void States::goToNext() {
-  bool isCurrentLast = this->current + 1 >= this->getStatesAmount();
+  bool isCurrentLast = current + 1 >= getStatesAmount();
   if (isCurrentLast)
   {
-    this->current = 0;
+    current = 0;
   } else
   {
-    this->current += 1;
+    current += 1;
   }
 }

@@ -5,32 +5,28 @@
 
 const int buttonPin = 7; // the number of the pushbutton pin
 
-States states;
-Button stateSwitchButton;
+States * states;
+Button * stateSwitchButton;
 
 void onButtonClicked()
 {
   Serial.println("click");
 }
 
-void goNextState()
-{
-  states.goToNext();
-}
-
 void setup()
 {
   Serial.begin(9600);
 
-  states = States();
-  stateSwitchButton = Button(buttonPin);
-  stateSwitchButton.setup();
+  states = new States();
+  stateSwitchButton = new Button(buttonPin);
 
-  stateSwitchButton.onClick(goNextState);
+  stateSwitchButton->setup();
+
+  stateSwitchButton->onClick(std::bind(&States::goToNext, states));
 }
 
 void loop()
 {
-  stateSwitchButton.loop();
-  Serial.println(states.getCurrent());
+  stateSwitchButton->loop();
+  Serial.println(states->getCurrent());
 }

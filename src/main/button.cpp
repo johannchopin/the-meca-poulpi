@@ -1,7 +1,10 @@
 #include "button.h"
 #include <Arduino.h>
+#include <functional>
 
-void Button::onClick(void (*callbackPtr)()){
+namespace std {void __throw_bad_function_call() { while(1); }; }
+
+void Button::onClick(std::function<void ()> callbackPtr){
   this->callbackPtr = callbackPtr;
 }
 
@@ -38,6 +41,7 @@ void Button::loop()
       // only toggle the LED if the new button state is HIGH
       if (this->buttonState == HIGH)
       {
+        Serial.println("click");
         this->callbackPtr();
       }
     }

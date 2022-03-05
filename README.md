@@ -7,7 +7,7 @@ Install the [Grove_LED_Bar](https://github.com/Seeed-Studio/Grove_LED_Bar) libra
 ## Components
 
 ### ChainableLED
-Checkout the doc https://github.com/pjpmarques/ChainableLED
+Checkout the doc https://github.com/pjpmarques/ChainableLED/releases/tag/v1.3
 
 ### Grove_LCD_RGB_Backlight
 Checkout the doc https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight

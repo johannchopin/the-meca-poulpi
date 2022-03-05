@@ -2,13 +2,22 @@
 #include <Arduino.h>
 #include <functional>
 
-namespace std {void __throw_bad_function_call() { while(1); }; }
+namespace std
+{
+  void __throw_bad_function_call()
+  {
+    while (1)
+      ;
+  };
+}
 
-void Button::onClick(std::function<void ()> callbackPtr){
+void Button::onClick(std::function<void()> callbackPtr)
+{
   this->callbackPtr = callbackPtr;
 }
 
-void Button::setup() {
+void Button::setup()
+{
   pinMode(this->pin, INPUT);
 }
 

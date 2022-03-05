@@ -3,20 +3,24 @@
 
 States::States() {}
 
-const char* States::getCurrent() {
+const char *States::getCurrent()
+{
   return states[current];
 }
 
-int States::getStatesAmount() {
-  return sizeof(states)/sizeof(states[0]);
+int States::getStatesAmount()
+{
+  return sizeof(states) / sizeof(states[0]);
 }
 
-void States::goToNext() {
+void States::goToNext()
+{
   bool isCurrentLast = current + 1 >= getStatesAmount();
   if (isCurrentLast)
   {
     current = 0;
-  } else
+  }
+  else
   {
     current += 1;
   }

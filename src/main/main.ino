@@ -5,13 +5,8 @@
 
 const int buttonPin = 7; // the number of the pushbutton pin
 
-States * states;
-Button * stateSwitchButton;
-
-void onButtonClicked()
-{
-  Serial.println("click");
-}
+States *states;
+Button *stateSwitchButton;
 
 void setup()
 {

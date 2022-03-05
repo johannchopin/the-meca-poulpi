@@ -27,6 +27,7 @@ void setup()
 
 void loop()
 {
+  states->loop();
   stateSwitchButton->loop();
   screen->loop(const_cast<char*> (states->getCurrent()));
 }

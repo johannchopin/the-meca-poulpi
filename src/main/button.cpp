@@ -6,9 +6,8 @@ namespace std
 {
   void __throw_bad_function_call()
   {
-    while (1)
-      ;
-  };
+    while (1);
+  }
 }
 
 void Button::onClick(std::function<void()> callbackPtr)

@@ -5,7 +5,8 @@
 
 rgb_lcd lcd;
 
-void Screen::colorBackground() {
+void Screen::colorBackground()
+{
   int colorR = 15;
   int colorG = 75;
   int colorB = 185;
@@ -15,17 +16,20 @@ void Screen::colorBackground() {
     colorR = 19;
     colorB = 219;
     colorG = 79;
-  } else if (strcmp(currentState, "sport") == 0)
+  }
+  else if (strcmp(currentState, "sport") == 0)
   {
     colorR = 253;
     colorB = 229;
     colorG = 39;
-  } else if (strcmp(currentState, "water") == 0)
+  }
+  else if (strcmp(currentState, "water") == 0)
   {
     colorR = 94;
     colorB = 173;
     colorG = 191;
-  } else if (strcmp(currentState, "tasks") == 0)
+  }
+  else if (strcmp(currentState, "tasks") == 0)
   {
     colorR = 248;
     colorB = 99;

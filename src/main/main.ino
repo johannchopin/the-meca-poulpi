@@ -19,9 +19,10 @@ void setup()
   screen = new Screen();
 
   stateSwitchButton->setup();
-  screen->setup();
+  states->setState("sleepy");
+  screen->setup(const_cast<char*> (states->getCurrent()));
 
-  stateSwitchButton->onClick(std::bind(&States::setState, states, "do_meditation"));
+  stateSwitchButton->onClick(std::bind(&States::goToNext, states));
 }
 
 void loop()

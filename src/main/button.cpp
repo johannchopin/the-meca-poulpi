@@ -50,7 +50,6 @@ void Button::loop()
       // only toggle the LED if the new button state is HIGH
       if (this->buttonState == HIGH)
       {
-        Serial.println("click");
         this->callbackPtr();
       }
     }

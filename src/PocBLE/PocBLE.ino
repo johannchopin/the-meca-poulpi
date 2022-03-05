@@ -32,13 +32,11 @@ ChainableLED leds(CHAINABLE_LEDS_POS, CHAINABLE_LEDS_DATA, NUM_LEDS);
 BLEPeripheral blePeripheral;
 
 // EyeService
-BLEService poulpiEyeService = "19B10000-E8F2-537E-4f6C-D104768A1214";
-BLEUnsignedCharCharacteristic winkEyeCharacteristic("19B10001-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
+BLEService poulpiEyeService = "19b10000-e8f2-537e-4f6c-d104768a1214";
+BLEUnsignedCharCharacteristic winkEyeCharacteristic("19b10001-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
 
 void setup() {
   Serial.begin(9600);
-
-  leds.init();
 
   // Set up BLE
   // initialize the BLE hardware
@@ -48,6 +46,7 @@ void setup() {
   // Set EyeService and itscharacteristics
   blePeripheral.setAdvertisedServiceUuid(poulpiEyeService.uuid());
   blePeripheral.addAttribute(winkEyeCharacteristic);
+  winkEyeCharacteristic.setValue(0);
  
   blePeripheral.begin();
   

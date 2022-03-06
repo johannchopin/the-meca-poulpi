@@ -3,7 +3,7 @@
 
 void WaterButton::setup()
 {
-  pinMode(this->pin, INPUT);
+  Button::setup();
   pinMode(this->ledPin, OUTPUT);
   digitalWrite(ledPin, HIGH);
 }

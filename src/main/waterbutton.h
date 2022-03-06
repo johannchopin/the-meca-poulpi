@@ -6,8 +6,7 @@ class WaterButton : public Button
 {
 public:
   WaterButton(){};
-  WaterButton(int pin, int ledPin)
-  : Button (pin)
+  WaterButton(int pin, int ledPin) : Button(pin)
   {
     this->ledPin = ledPin;
   }

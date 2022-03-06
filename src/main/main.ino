@@ -1,4 +1,5 @@
 #include <string>
+#include "constants.h"
 #include "pitches.h"
 #include "states.h"
 #include "button.h"
@@ -25,11 +26,11 @@ void setup()
   waterButton = new WaterButton(6, 5);
   buzzer = new Buzzer(BUZZER_PIN);
 
-  states->setState("sleepy");
+  states->setState(PoulpiState::SLEEPY);
 
   stateSwitchButton->setup();
   waterButton->setup();
-  screen->setup(const_cast<char *>(states->getCurrent()));
+  screen->setup(states->getCurrent());
   buzzer->setup();
 
   stateSwitchButton->onClick(std::bind(&States::goToNext, states));
@@ -42,6 +43,6 @@ void loop()
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();
-  screen->loop(const_cast<char *>(states->getCurrent()));
+  screen->loop((states->getCurrent()));
   buzzer->setup();
 }

@@ -1,4 +1,5 @@
 #include <Wire.h>
+#include "constants.h"
 #include "screen.h"
 #include "rgb_lcd.h"
 #include <string.h>
@@ -11,25 +12,25 @@ void Screen::colorBackground()
   int colorG = 75;
   int colorB = 185;
 
-  if (strcmp(currentState, "meditation") == 0 || strcmp(currentState, "do_meditation") == 0)
+  if (currentState == PoulpiState::MEDITATION || currentState == PoulpiState::DO_MEDITATION)
   {
     colorR = 19;
     colorB = 219;
     colorG = 79;
   }
-  else if (strcmp(currentState, "sport") == 0 || strcmp(currentState, "do_sport") == 0)
+  else if (currentState == PoulpiState::SPORT || currentState == PoulpiState::SPORT)
   {
     colorR = 253;
     colorB = 229;
     colorG = 39;
   }
-  else if (strcmp(currentState, "water") == 0)
+  else if (currentState == PoulpiState::WATER)
   {
     colorR = 94;
     colorB = 173;
     colorG = 191;
   }
-  else if (strcmp(currentState, "tasks") == 0)
+  else if (currentState == PoulpiState::TASKS)
   {
     colorR = 248;
     colorB = 99;
@@ -39,7 +40,7 @@ void Screen::colorBackground()
   lcd.setRGB(colorR, colorG, colorB);
 }
 
-void Screen::setup(char *state)
+void Screen::setup(PoulpiState state)
 {
   currentState = state;
   lcd.begin(16, 2);
@@ -52,12 +53,13 @@ void Screen::onStateChange()
   lcd.clear();
   colorBackground();
   lcd.setCursor(0, 1);
+  // TODO: display the according text of the new state
   lcd.print(currentState);
 }
 
-void Screen::loop(char *state)
+void Screen::loop(PoulpiState state)
 {
-  int stateHasChanged = strcmp(state, currentState) != 0;
+  bool stateHasChanged = (state != currentState);
   if (stateHasChanged)
   {
     currentState = state;

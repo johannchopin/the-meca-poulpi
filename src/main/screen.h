@@ -2,11 +2,11 @@ class Screen
 {
 public:
   Screen(){};
-  void loop(char *state);
-  void setup(char *state);
+  void loop(PoulpiState state);
+  void setup(PoulpiState state);
   void colorBackground();
   int pin;
 private:
-  char *currentState;
+  PoulpiState currentState;
   void onStateChange();
 };

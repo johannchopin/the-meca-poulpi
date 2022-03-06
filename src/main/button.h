@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <functional>
 
+#pragma once
+
 class Button
 {
 public:
@@ -11,10 +13,10 @@ public:
   };
   void onClick(std::function<void()> callbackPtr);
   void loop();
-  void setup();
+  virtual void setup();
+  int pin;
 
 private:
-  int pin;
   int ledState = HIGH;
   int buttonState;
   int lastButtonState = LOW;

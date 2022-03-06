@@ -32,8 +32,8 @@ ChainableLED leds(CHAINABLE_LEDS_POS, CHAINABLE_LEDS_DATA, NUM_LEDS);
 BLEPeripheral blePeripheral;
 
 // EyeService
-BLEService poulpiEyeService = "19b10000-e8f2-537e-4f6c-d104768a1214";
-BLEUnsignedCharCharacteristic winkEyeCharacteristic("19b10001-e8f2-537e-4f6c-d104768a1214", BLERead | BLEWrite);
+BLEService poulpiEyeService("19B10000-E8F2-537E-4f6C-D104768A1214");
+BLEUnsignedCharCharacteristic winkEyeCharacteristic("19B10001-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
 
 void setup() {
   Serial.begin(9600);
@@ -44,12 +44,16 @@ void setup() {
   blePeripheral.setDeviceName("Poulpi");
 
   // Set EyeService and itscharacteristics
+  // poulpiEyeService.addCharacteristic(winkEyeCharacteristic);
   blePeripheral.setAdvertisedServiceUuid(poulpiEyeService.uuid());
+  // blePeripheral.addService(poulpiEyeService);
+  blePeripheral.addAttribute(poulpiEyeService);
   blePeripheral.addAttribute(winkEyeCharacteristic);
   winkEyeCharacteristic.setValue(0);
  
   blePeripheral.begin();
-  
+
+
   Serial.println("BLE Peripheral initialized");
 }
 
@@ -58,8 +62,8 @@ void loop() {
   BLECentral central = blePeripheral.central();
   if (central)
   {
-    Serial.print("Connected to central: ");
-    Serial.println(central.address());
+    // Serial.print("Connected to central: ");
+    // Serial.println(central.address());
 
     if (winkEyeCharacteristic.written()) {
       // TODO: make enumeration 0: off and 1: on

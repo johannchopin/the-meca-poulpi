@@ -1,3 +1,5 @@
+#pragma once
+
 class InoComponent
 {
 public:

@@ -11,13 +11,13 @@ void Screen::colorBackground()
   int colorG = 75;
   int colorB = 185;
 
-  if (strcmp(currentState, "meditation") == 0)
+  if (strcmp(currentState, "meditation") == 0 || strcmp(currentState, "do_meditation") == 0)
   {
     colorR = 19;
     colorB = 219;
     colorG = 79;
   }
-  else if (strcmp(currentState, "sport") == 0)
+  else if (strcmp(currentState, "sport") == 0 || strcmp(currentState, "do_sport") == 0)
   {
     colorR = 253;
     colorB = 229;

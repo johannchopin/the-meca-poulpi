@@ -10,4 +10,8 @@ public:
   void playTone(Song *song);
   void setup();
   void loop();
+  bool isPlaying = false;
+  Song *song;
+private:
+  void playSong();
 };

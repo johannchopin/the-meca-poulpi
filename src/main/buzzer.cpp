@@ -5,15 +5,24 @@
 
 void Buzzer::playTone(Song *song)
 {
-  // iterate over the notes of the melody:
-  for (int thisNote = 0; thisNote < 8; thisNote++)
-  {
+  this->song = song;
+  this->isPlaying = true;
+}
 
+void Buzzer::setup()
+{
+  pinMode(this->pin, INPUT);
+}
+
+void Buzzer::playSong()
+{
+  for (int thisNote = 0; thisNote < this->song->length; thisNote++)
+  {
     // to calculate the note duration, take one second divided by the note type.
     // e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    int noteDuration = 1000 / song->durations[thisNote];
+    int noteDuration = 1000 / this->song->durations[thisNote];
 
-    tone(4, song->melody[thisNote], noteDuration);
+    tone(4, this->song->melody[thisNote], noteDuration);
 
     // to distinguish the notes, set a minimum time between them.
     // the note's duration + 30% seems to work well:
@@ -23,14 +32,13 @@ void Buzzer::playTone(Song *song)
     noTone(4);
   }
 
-  yield();
-}
-void Buzzer::setup()
-{
-  pinMode(this->pin, INPUT);
+  isPlaying = false;
 }
 
 void Buzzer::loop()
 {
-
+  if (isPlaying)
+  {
+    this->playSong();
+  }
 }

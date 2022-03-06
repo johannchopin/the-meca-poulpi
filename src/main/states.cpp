@@ -4,23 +4,14 @@
 
 States::States() {}
 
-const char *States::getCurrent()
+const PoulpiState States::getCurrent()
 {
   return states[current];
 }
 
-void States::setState(char const *state)
+void States::setState(PoulpiState state)
 {
-  int matchingIndex = 0;
-  for (int i = 0; i < getStatesAmount(); i++)
-  {
-    if (states[i] == state)
-    {
-      matchingIndex = i;
-    }
-  }
-
-  current = matchingIndex;
+  current = state;
 }
 
 int States::getStatesAmount()
@@ -30,15 +21,7 @@ int States::getStatesAmount()
 
 void States::goToNext()
 {
-  bool isCurrentLast = current + 1 >= getStatesAmount();
-  if (isCurrentLast)
-  {
-    current = 0;
-  }
-  else
-  {
-    current += 1;
-  }
+  current = (PoulpiState)((current + 1) % getStatesAmount());
 }
 
 void States::loop()

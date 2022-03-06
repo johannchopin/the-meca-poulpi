@@ -1,20 +1,20 @@
 #include <Arduino.h>
 #include <functional>
+#include "inocomponent.h"
+#include "inocomponentwithsinglepin.h"
 
-class Button
+#pragma once
+
+class Button : public InoComponent, public InoComponentWithSinglePin
 {
 public:
   Button(){};
-  Button(int pin)
-  {
-    this->pin = pin;
-  };
+  Button(int pin) : InoComponentWithSinglePin(pin){};
   void onClick(std::function<void()> callbackPtr);
   void loop();
   void setup();
 
 private:
-  int pin;
   int ledState = HIGH;
   int buttonState;
   int lastButtonState = LOW;

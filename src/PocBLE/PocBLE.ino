@@ -60,14 +60,14 @@ void setup() {
 void loop() {
   // check if a peripheral has been discovered
   BLECentral central = blePeripheral.central();
-  if (central)
+  Serial.println("START LOOP");
+  if(central)
   {
-    // Serial.print("Connected to central: ");
-    // Serial.println(central.address());
-
+      Serial.println("IN central");
     if (winkEyeCharacteristic.written()) {
+        Serial.println("IN written");
       // TODO: make enumeration 0: off and 1: on
-      if(winkEyeCharacteristic.value() == 0) {
+      if(winkEyeCharacteristic.value() == 1) {
         for (byte i=0; i<NUM_LEDS; i++) {
           leds.setColorHSL(i, 0.358f, 1.0f, 0.5f);
         }

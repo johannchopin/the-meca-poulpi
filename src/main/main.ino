@@ -50,4 +50,5 @@ void loop()
   waterButton->loop();
   screen->loop((states->getCurrent()));
   buzzer->loop();
+  delay(50);
 }

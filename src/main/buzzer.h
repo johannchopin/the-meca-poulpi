@@ -14,4 +14,6 @@ public:
   Song *song;
 private:
   void playSong();
+  unsigned long startSongTime = 0;
+  int currentNote;
 };

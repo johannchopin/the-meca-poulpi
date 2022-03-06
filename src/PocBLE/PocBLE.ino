@@ -37,22 +37,20 @@ BLEUnsignedCharCharacteristic winkEyeCharacteristic("19B10001-E8F2-537E-4f6C-D10
 
 void setup() {
   Serial.begin(9600);
+  leds.init();
 
   // Set up BLE
   // initialize the BLE hardware
   blePeripheral.setLocalName("Poulpi");
   blePeripheral.setDeviceName("Poulpi");
 
-  // Set EyeService and itscharacteristics
-  // poulpiEyeService.addCharacteristic(winkEyeCharacteristic);
+  // Set EyeService and eye characteristic toggle
   blePeripheral.setAdvertisedServiceUuid(poulpiEyeService.uuid());
-  // blePeripheral.addService(poulpiEyeService);
   blePeripheral.addAttribute(poulpiEyeService);
   blePeripheral.addAttribute(winkEyeCharacteristic);
   winkEyeCharacteristic.setValue(0);
  
   blePeripheral.begin();
-
 
   Serial.println("BLE Peripheral initialized");
 }
@@ -60,21 +58,19 @@ void setup() {
 void loop() {
   // check if a peripheral has been discovered
   BLECentral central = blePeripheral.central();
-  Serial.println("START LOOP");
   if(central)
   {
-      Serial.println("IN central");
     if (winkEyeCharacteristic.written()) {
-        Serial.println("IN written");
       // TODO: make enumeration 0: off and 1: on
+      Serial.println(winkEyeCharacteristic.value());
       if(winkEyeCharacteristic.value() == 1) {
         for (byte i=0; i<NUM_LEDS; i++) {
-          leds.setColorHSL(i, 0.358f, 1.0f, 0.5f);
+          leds.setColorHSL(i, 0.0, 1.0, 0.5);
         }
       }
       else {
         for (byte i=0; i<NUM_LEDS; i++) {
-          leds.setColorHSL(i, 0.270f, 0.0f, 0.0f);
+          leds.setColorHSL(i, 82.0, 0.0, 0.0);
         }
       }
     }

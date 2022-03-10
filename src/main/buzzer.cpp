@@ -6,6 +6,7 @@
 void Buzzer::playTone(Song *song)
 {
   this->song = song;
+  this->setDurationsTimestamp();
   this->isPlaying = true;
 }
 
@@ -14,18 +15,27 @@ void Buzzer::setup()
   pinMode(this->pin, INPUT);
 }
 
+void Buzzer::setDurationsTimestamp()
+{
+  int current = millis();
+
+  for (int durationIndex = 0; durationIndex < this->song->length; durationIndex++)
+  {
+    int noteDuration = 1000 / this->song->durations[durationIndex];
+    current += noteDuration;
+    this->song->durations[durationIndex] = current;
+  }
+}
+
 void Buzzer::playSong()
 {
   int noteToPlay;
-  int noteDuration;
-  int bestNoteCandidateStartTime = millis();
+  int current = millis();
 
   for (int noteIndex = 0; noteIndex < this->song->length; noteIndex++)
   {
-    // to calculate the note duration, take one second divided by the note type.
-    // e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    noteDuration = 1000 / this->song->durations[noteIndex];
-    if ((this->startSongTime + noteDuration) > bestNoteCandidateStartTime)
+    bool noteShouldBePlayed = this->song->durations[noteIndex] >= current;
+    if (noteShouldBePlayed)
     {
       noteToPlay = this->song->melody[noteIndex];
       if (noteIndex == this->song->length)
@@ -34,25 +44,16 @@ void Buzzer::playSong()
         isPlaying = false;
         noTone(this->pin);
       }
-    }
-    else
-    {
-      bestNoteCandidateStartTime += noteDuration;
-    }
 
-    // to distinguish the notes, set a minimum time between them.
-    // the note's duration + 30% seems to work well:
-    // int pauseBetweenNotes = noteDuration * 1.30;
-    // delay(pauseBetweenNotes);
-    // stop the tone playing:
+      break;
+    }
   }
 
   if (noteToPlay != this->currentNote)
   {
     Serial.println(noteToPlay);
-    Serial.println(noteDuration);
     this->currentNote = noteToPlay;
-    tone(this->pin, this->currentNote, noteDuration);
+    tone(this->pin, this->currentNote, 1000);
   }
 }
 

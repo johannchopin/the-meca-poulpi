@@ -30,6 +30,7 @@ void Buzzer::playTone()
 
   yield();
 }
+
 void Buzzer::setup()
 {
   pinMode(this->pin, INPUT);

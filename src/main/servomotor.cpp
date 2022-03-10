@@ -25,7 +25,8 @@ void Servomotor::toggleTentacule()
   if (this->position == this->POSITION_DOWN)
   {
     deg = this->POSITION_UP;
-  } else
+  }
+  else
   {
     deg = this->POSITION_DOWN;
   }
@@ -47,6 +48,5 @@ void Servomotor::loop()
       this->toggleTentacule();
       this->tentaculeDebounceTime = current;
     }
-    
   }
 }

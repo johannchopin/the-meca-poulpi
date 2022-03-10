@@ -9,11 +9,13 @@
 #include "song.h"
 #include "gauge.h"
 #include "ble.h"
+#include "servomotor.h"
 
 const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
 const int BUTTON_PIN = 7;
 const int GAUGE_PIN = 8;
+const int MOTOR_PIN = 3;
 
 Ble *ble;
 States *states;
@@ -22,6 +24,7 @@ Screen *screen;
 WaterButton *waterButton;
 Buzzer *buzzer;
 Gauge *gauge;
+Servomotor *motor;
 
 void setup()
 {
@@ -34,6 +37,7 @@ void setup()
   waterButton = new WaterButton(WATER_BUTTON_PIN, WATER_BUTTON_PIN - 1);
   buzzer = new Buzzer(BUZZER_PIN);
   gauge = new Gauge(GAUGE_PIN);
+  motor = new Servomotor(MOTOR_PIN);
 
   states->setState(PoulpiState::SLEEPY);
 
@@ -42,6 +46,7 @@ void setup()
   screen->setup(states->getCurrent());
   buzzer->setup();
   gauge->setup();
+  motor->setup();
 
   ble->setup(); // should be after all other component setup
 

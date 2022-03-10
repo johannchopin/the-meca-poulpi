@@ -2,18 +2,20 @@
 
 ## Getting started
 
-Install the [Grove_LED_Bar](https://github.com/Seeed-Studio/Grove_LED_Bar) library -> https://github.com/Seeed-Studio/Grove_LED_Bar/releases/tag/1.0.0
+Install the following libraries :
+* [Grove_LED_Bar version 2022-03-10](https://github.com/Seeed-Studio/Grove_LED_Bar/archive/refs/heads/master.zip)
+* [ChainableLED v1.3](https://github.com/pjpmarques/ChainableLED/releases/tag/v1.3)
 
 ## Components
 
 ### ChainableLED
-Checkout the doc https://github.com/pjpmarques/ChainableLED/releases/tag/v1.3
+Checkout the library https://github.com/pjpmarques/ChainableLED
 
 ### Grove_LCD_RGB_Backlight
 Checkout the doc https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight
 
 ### Grove-LED_Bar
-Checkout the doc https://wiki.seeedstudio.com/Grove-LED_Bar/
+Download the doc https://github.com/Seeed-Studio/Grove_LED_Bar
 
 ### Grove-Servo
 Checkout the doc https://wiki.seeedstudio.com/Grove-Servo/

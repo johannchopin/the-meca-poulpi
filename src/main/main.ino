@@ -7,15 +7,18 @@
 #include "waterbutton.h"
 #include "buzzer.h"
 #include "song.h"
+#include "gauge.h"
 
 const int BUTTON_PIN = 7;
 const int BUZZER_PIN = 4;
+const int GAUGE_PIN = 8;
 
 States *states;
 Button *stateSwitchButton;
 Screen *screen;
 WaterButton *waterButton;
 Buzzer *buzzer;
+Gauge *gauge;
 
 void setup()
 {
@@ -26,6 +29,7 @@ void setup()
   screen = new Screen();
   waterButton = new WaterButton(6, 5);
   buzzer = new Buzzer(BUZZER_PIN);
+  gauge = new Gauge(GAUGE_PIN);
 
   states->setState(PoulpiState::SLEEPY);
 
@@ -33,6 +37,7 @@ void setup()
   waterButton->setup();
   screen->setup(states->getCurrent());
   buzzer->setup();
+  gauge->setup();
 
   int *melody = new int[8]{NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4};
   int *durations = new int[8]{4, 8, 8, 4, 4, 4, 4, 4};
@@ -50,5 +55,5 @@ void loop()
   waterButton->loop();
   screen->loop((states->getCurrent()));
   buzzer->loop();
-  delay(50);
+  gauge->loop(states->gaugeLevel);
 }

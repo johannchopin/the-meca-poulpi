@@ -4,6 +4,7 @@
 
 States::States() {
   this->gaugeLevel = 0.0F;
+  this->winkEye = 0;
 }
 
 const PoulpiState States::getCurrent()

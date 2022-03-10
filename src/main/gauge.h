@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include <functional>
+#include <Grove_LED_Bar.h>
 #include "inocomponent.h"
 #include "inocomponentwithsinglepin.h"
-#include <Grove_LED_Bar.h>
 
 #pragma once
 

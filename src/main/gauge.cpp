@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "gauge.h"
 
 void Gauge::setup() {

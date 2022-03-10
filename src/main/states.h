@@ -24,6 +24,7 @@ public:
 
   float gaugeLevel;
   void incrementWater();
+  unsigned int waterObjective;
   int winkEye;
 
 private:

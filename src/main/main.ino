@@ -10,8 +10,9 @@
 #include "gauge.h"
 #include "ble.h"
 
-const int BUTTON_PIN = 7;
 const int BUZZER_PIN = 4;
+const int WATER_BUTTON_PIN = 6;
+const int BUTTON_PIN = 7;
 const int GAUGE_PIN = 8;
 
 Ble *ble;
@@ -30,7 +31,7 @@ void setup()
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
   screen = new Screen();
-  waterButton = new WaterButton(6, 5);
+  waterButton = new WaterButton(WATER_BUTTON_PIN, WATER_BUTTON_PIN - 1);
   buzzer = new Buzzer(BUZZER_PIN);
   gauge = new Gauge(GAUGE_PIN);
 

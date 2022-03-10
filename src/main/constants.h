@@ -9,3 +9,5 @@ typedef enum {
   TASKS,
   SLEEPY,
 } PoulpiState;
+
+const unsigned int DEFAULT_WATER_TO_DRINK_IN_ML = 2000;

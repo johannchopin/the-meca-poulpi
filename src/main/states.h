@@ -19,6 +19,8 @@ public:
   void setState(PoulpiState const state);
   void loop();
 
+  float gaugeLevel; 
+
 private:
   PoulpiState current = PoulpiState::SLEEPY;
   unsigned long lastStateChangeDebounceTime = 0;

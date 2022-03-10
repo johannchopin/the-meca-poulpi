@@ -10,6 +10,7 @@
 
 const int BUTTON_PIN = 7;
 const int BUZZER_PIN = 4;
+const int GAUGE_PIN = 8;
 
 States *states;
 Button *stateSwitchButton;
@@ -27,6 +28,7 @@ void setup()
   screen = new Screen();
   waterButton = new WaterButton(6, 5);
   buzzer = new Buzzer(BUZZER_PIN);
+  gauge = new Gauge(GAUGE_PIN);
 
   states->setState(PoulpiState::SLEEPY);
 
@@ -49,4 +51,5 @@ void loop()
   waterButton->loop();
   screen->loop((states->getCurrent()));
   buzzer->setup();
+  gauge->loop(states->gaugeLevel);
 }

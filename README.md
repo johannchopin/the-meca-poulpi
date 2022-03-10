@@ -3,7 +3,7 @@
 ## Getting started
 
 Install the following libraries :
-* [Grove_LED_Bar v1.0.1](https://github.com/Seeed-Studio/Grove_LED_Bar/releases/tag/1.0.1)
+* [Grove_LED_Bar version 2022-03-10](https://github.com/Seeed-Studio/Grove_LED_Bar/archive/refs/heads/master.zip)
 * [ChainableLED v1.3](https://github.com/pjpmarques/ChainableLED/releases/tag/v1.3)
 
 ## Components

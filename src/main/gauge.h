@@ -2,21 +2,19 @@
 #include <functional>
 #include "inocomponent.h"
 #include "inocomponentwithsinglepin.h"
+#include <Grove_LED_Bar.h>
 
 #pragma once
 
 class Gauge : public InoComponent, public InoComponentWithSinglePin
 {
-public:
-  Gauge(){};
-  Gauge(int pin) : InoComponentWithSinglePin(pin){};
+  public:
+    Gauge(int pin) : InoComponentWithSinglePin(pin){};
 
-  void loop();
-  void setup();
+    void setup();
+    void loop(float gaugeLevel);
+  
+  private:
+    Grove_LED_Bar *bar = NULL;
 
-  void increaseLevel();
-  void decreaseLevel();
-
-private:
-  int level = 0;
 };

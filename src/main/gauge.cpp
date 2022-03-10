@@ -1,21 +1,10 @@
-#include "button.h"
-#include <Arduino.h>
-#include <functional>
+#include "gauge.h"
 
-void Gauge::setup()
-{
+void Gauge::setup() {
   pinMode(this->pin, OUTPUT);
+  this->bar = new Grove_LED_Bar((int)this->pin, this->pin + 1, false, LedType::LED_BAR_10);
 }
 
-void Gauge::loop()
-{
-    
-}
-
-void Gauge::increaseLevel() {
-    level(level + 1)
-}
-
-void Gauge::decreaseLevel() {
-    level(level - 1)
+void Gauge::loop(float gaugeLevel) {
+  this->bar->setLevel(gaugeLevel);
 }

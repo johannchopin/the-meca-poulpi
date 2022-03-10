@@ -2,7 +2,9 @@
 #include <Arduino.h>
 #include <algorithm>
 
-States::States() {}
+States::States() {
+  this->gaugeLevel = 0.0F;
+}
 
 const PoulpiState States::getCurrent()
 {

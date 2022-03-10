@@ -3,6 +3,12 @@
 #include "pitches.h"
 #include "song.h"
 
+void Buzzer::stopTone()
+{
+  isPlaying = false;
+  noTone(this->pin);
+}
+
 void Buzzer::playTone(Song *song)
 {
   this->song = song;
@@ -18,42 +24,48 @@ void Buzzer::setup()
 void Buzzer::setDurationsTimestamp()
 {
   int current = millis();
+  int dest[this->song->length];
 
   for (int durationIndex = 0; durationIndex < this->song->length; durationIndex++)
   {
     int noteDuration = 1000 / this->song->durations[durationIndex];
     current += noteDuration;
-    this->song->durations[durationIndex] = current;
+    dest[durationIndex] = current;
+  }
+
+  this->durationsTimestamp = dest;
+}
+
+void Buzzer::playNote(int note)
+{
+  if (note != this->currentNote)
+  {
+    noTone(this->pin);
+    this->currentNote = note;
+    tone(this->pin, this->currentNote, 1000);
   }
 }
 
 void Buzzer::playSong()
 {
-  int noteToPlay;
   int current = millis();
 
   for (int noteIndex = 0; noteIndex < this->song->length; noteIndex++)
   {
-    bool noteShouldBePlayed = this->song->durations[noteIndex] >= current;
+    bool noteShouldBePlayed = this->durationsTimestamp[noteIndex] >= current;
+
     if (noteShouldBePlayed)
     {
-      noteToPlay = this->song->melody[noteIndex];
-      if (noteIndex == this->song->length)
+      this->playNote(this->song->melody[noteIndex]);
+
+      bool isLastNote = noteIndex + 1 == this->song->length;
+      if (isLastNote)
       {
-        Serial.println("no play");
-        isPlaying = false;
-        noTone(this->pin);
+        this->stopTone();
       }
 
       break;
     }
-  }
-
-  if (noteToPlay != this->currentNote)
-  {
-    Serial.println(noteToPlay);
-    this->currentNote = noteToPlay;
-    tone(this->pin, this->currentNote, 1000);
   }
 }
 

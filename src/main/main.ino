@@ -8,11 +8,13 @@
 #include "buzzer.h"
 #include "song.h"
 #include "gauge.h"
+#include "ble.h"
 
 const int BUTTON_PIN = 7;
 const int BUZZER_PIN = 4;
 const int GAUGE_PIN = 8;
 
+Ble *ble;
 States *states;
 Button *stateSwitchButton;
 Screen *screen;
@@ -23,6 +25,8 @@ Gauge *gauge;
 void setup()
 {
   Serial.begin(9600);
+
+  ble = new Ble();
 
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
@@ -43,6 +47,8 @@ void setup()
   int *durations = new int[8]{4, 8, 8, 4, 4, 4, 4, 4};
   Song *song = new Song(melody, durations, 8);
 
+  ble->setup();
+
   stateSwitchButton->onClick(std::bind(&States::goToNext, states));
   // waterButton->onClick(std::bind(&States::goToNext, states));
   waterButton->onClick(std::bind(&Buzzer::playTone, buzzer, song));
@@ -56,4 +62,5 @@ void loop()
   screen->loop((states->getCurrent()));
   buzzer->loop();
   gauge->loop(states->gaugeLevel);
+  ble->loop(states);
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "constants.h"
 
 class States
@@ -20,6 +21,7 @@ public:
   void loop();
 
   float gaugeLevel; 
+  int winkEye;
 
 private:
   PoulpiState current = PoulpiState::SLEEPY;

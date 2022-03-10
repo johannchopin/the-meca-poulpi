@@ -15,7 +15,7 @@ const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
 const int BUTTON_PIN = 7;
 const int GAUGE_PIN = 8;
-const int MOTOR_PIN = 3;
+const int MOTOR_PIN = 10;
 
 Ble *ble;
 States *states;
@@ -63,4 +63,5 @@ void loop()
   buzzer->loop();
   gauge->loop(states->gaugeLevel);
   ble->loop(states);
+  motor->loop();
 }

@@ -13,7 +13,15 @@ public:
   Servomotor(int pin) : InoComponentWithSinglePin(pin) {}
   void setup();
   void loop();
-  int position;
+  void startTentaculeAnimation();
+  void stopTentaculeAnimation();
+  int position = 16;
+  int POSITION_UP = 0;
+  int POSITION_DOWN = 16;
 private:
   Servo motor;
+  int tentaculeDebounceTime = 0;
+  int tentaculeDelay = 500;
+  bool isTentaculeAnimated = false;
+  void toggleTentacule();
 };

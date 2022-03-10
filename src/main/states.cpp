@@ -12,11 +12,6 @@ const PoulpiState States::getCurrent()
   return states[current];
 }
 
-char *States::getStateName(PoulpiState stateId)
-{
-  return this->statesName[stateId];
-}
-
 void States::setState(PoulpiState state)
 {
   current = state;

@@ -16,8 +16,6 @@ public:
     WATER,
     TASKS,
   };
-  const *statesName[STATE_AMOUNT] = {"endormie", "en méditation", "médite", "en sport", "fait du sport", "mode eau", "tâches"};
-  const char *getStateName(PoulpiState state);
   const PoulpiState getCurrent();
   void goToNext();
   int getStatesAmount();

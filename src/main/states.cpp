@@ -36,3 +36,7 @@ void States::loop()
     lastStateChangeDebounceTime = millis();
   }
 }
+
+void States::incrementWater() {
+  this->gaugeLevel += 1;
+}

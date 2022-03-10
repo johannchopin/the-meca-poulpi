@@ -22,7 +22,8 @@ public:
   void setState(PoulpiState const state);
   void loop();
 
-  float gaugeLevel; 
+  float gaugeLevel;
+  void incrementWater();
   int winkEye;
 
 private:

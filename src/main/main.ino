@@ -26,6 +26,30 @@ Buzzer *buzzer;
 Gauge *gauge;
 Servomotor *motor;
 
+PoulpiState state;
+
+void onStateChange()
+{
+  state = states->getCurrent();
+  if (state == PoulpiState::SPORT)
+  {
+    motor->startTentaculeAnimation();
+  }
+  else
+  {
+    motor->stopTentaculeAnimation();
+  }
+}
+
+void stateController()
+{
+  bool stateHasChanged = (state != states->getCurrent());
+  if (stateHasChanged)
+  {
+    onStateChange();
+  }
+}
+
 void setup()
 {
   Serial.begin(9600);
@@ -40,6 +64,8 @@ void setup()
   motor = new Servomotor(MOTOR_PIN);
 
   states->setState(PoulpiState::SLEEPY);
+
+  state = states->getCurrent();
 
   stateSwitchButton->setup();
   waterButton->setup();
@@ -64,4 +90,6 @@ void loop()
   gauge->loop(states->gaugeLevel);
   ble->loop(states);
   motor->loop();
+
+  stateController();
 }

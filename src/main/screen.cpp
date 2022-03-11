@@ -19,7 +19,7 @@ void Screen::colorBackground()
     colorB = 219;
     colorG = 79;
   }
-  else if (currentState == PoulpiState::SPORT || currentState == PoulpiState::SPORT)
+  else if (currentState == PoulpiState::SPORT || currentState == PoulpiState::DO_SPORT)
   {
     colorR = 253;
     colorB = 229;

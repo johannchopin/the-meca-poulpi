@@ -11,6 +11,7 @@
 #include "ble.h"
 #include "servomotor.h"
 #include "eyes.h"
+#include "potentiometer.h"
 
 const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
@@ -28,6 +29,7 @@ Buzzer *buzzer;
 Gauge *gauge;
 Servomotor *motor;
 Eyes *eyes;
+Potentiometer *potentiometer;
 
 PoulpiState state;
 
@@ -56,7 +58,6 @@ void stateController()
 void setup()
 {
   Serial.begin(9600);
-
   ble = new Ble();
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
@@ -73,11 +74,12 @@ void setup()
 
   stateSwitchButton->setup();
   waterButton->setup();
-  screen->setup(states->getCurrent());
+  screen->setup(states);
   buzzer->setup();
   gauge->setup();
   motor->setup();
   eyes->setup();
+  potentiometer->setup();
 
   ble->setup(); // should be after all other component setup
 
@@ -91,15 +93,17 @@ void setup()
 
 void loop()
 {
+  Serial.println("Ping");
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();
-  screen->loop(states->getCurrent());
+  screen->loop(states);
   buzzer->loop();
   gauge->loop(states->gaugeLevel);
   ble->loop(states);
   motor->loop();
   eyes->loop(states->getCurrent());
+  potentiometer->loop(states);
 
   stateController();
 }

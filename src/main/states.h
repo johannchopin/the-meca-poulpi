@@ -7,6 +7,7 @@ class States
 {
 public:
   States();
+
   const PoulpiState states[STATE_AMOUNT] = {
     SLEEPY,
     MEDITATION,
@@ -16,6 +17,7 @@ public:
     WATER,
     TASKS,
   };
+
   const PoulpiState getCurrent();
   void goToNext();
   int getStatesAmount();
@@ -26,6 +28,7 @@ public:
   void incrementWater();
   unsigned int waterObjective;
   int winkEye;
+  int waterGlassSizeInMl;
 
 private:
   PoulpiState current = PoulpiState::SLEEPY;

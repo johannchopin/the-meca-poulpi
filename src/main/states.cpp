@@ -6,6 +6,7 @@ States::States() {
   this->gaugeLevel = 0.0F;
   this->waterObjective = DEFAULT_WATER_TO_DRINK_IN_ML;
   this->winkEye = 0;
+  this->waterGlassSizeInMl = 200;
 }
 
 const PoulpiState States::getCurrent()

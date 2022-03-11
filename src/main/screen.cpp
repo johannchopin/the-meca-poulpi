@@ -1,11 +1,45 @@
-#include <Arduino.h>
-#include <Wire.h>
-#include "constants.h"
 #include "screen.h"
-#include "rgb_lcd.h"
-#include <string.h>
 
 rgb_lcd lcd;
+
+void Screen::setup(States* states)
+{
+  updateLocalStateFromStates(states);
+  lcd.begin(16, 2);
+  lcd.print("hello, world!");
+  onStateChange();
+}
+
+void Screen::loop(States* states)
+{
+  PoulpiState currentGlobalState = states->getCurrent();
+  int waterGlassSizeInMl = states->waterGlassSizeInMl;
+
+  bool stateHasChanged = (currentState != currentGlobalState || waterGlassSizeInMlDisplayed != waterGlassSizeInMl);
+  if (stateHasChanged)
+  {
+    updateLocalStateFromStates(states);
+    onStateChange();
+  }
+}
+
+void Screen::onStateChange()
+{
+  lcd.clear();
+  colorBackground();
+  lcd.setCursor(0, 1);
+  // TODO: display the according text of the new state
+  // if (currentState == PoulpiState::SLEEPY) {
+    lcd.print(waterGlassSizeInMlDisplayed);
+  //} else {
+  //   lcd.print(currentState);
+  // }
+}
+
+void Screen::updateLocalStateFromStates(States* states) {
+  currentState = states->getCurrent();
+  waterGlassSizeInMlDisplayed = states->waterGlassSizeInMl;
+}
 
 void Screen::colorBackground()
 {
@@ -39,31 +73,4 @@ void Screen::colorBackground()
   }
 
   lcd.setRGB(colorR, colorG, colorB);
-}
-
-void Screen::setup(PoulpiState state)
-{
-  currentState = state;
-  lcd.begin(16, 2);
-  lcd.print("hello, world!");
-  onStateChange();
-}
-
-void Screen::onStateChange()
-{
-  lcd.clear();
-  colorBackground();
-  lcd.setCursor(0, 1);
-  // TODO: display the according text of the new state
-  lcd.print(currentState);
-}
-
-void Screen::loop(PoulpiState state)
-{
-  bool stateHasChanged = (state != currentState);
-  if (stateHasChanged)
-  {
-    currentState = state;
-    onStateChange();
-  }
 }

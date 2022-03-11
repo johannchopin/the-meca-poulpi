@@ -1,13 +1,8 @@
-#include <Arduino.h>
-#include <Wire.h>
-#include "constants.h"
-#include "screen.h"
-#include "rgb_lcd.h"
-#include <string.h>
+#include "eyes.h"
 
-rgb_lcd lcd;
+#define EYES_AMOUNT 2
 
-void Screen::colorBackground()
+void Eyes::onStateChange()
 {
   int colorR = 15;
   int colorG = 75;
@@ -38,27 +33,24 @@ void Screen::colorBackground()
     colorG = 30;
   }
 
-  lcd.setRGB(colorR, colorG, colorB);
+  this->setRgbColor(colorR, colorG, colorB);
 }
 
-void Screen::setup(PoulpiState state)
+void Eyes::setRgbColor(int r, int g, int b)
 {
-  currentState = state;
-  lcd.begin(16, 2);
-  lcd.print("hello, world!");
-  onStateChange();
+  for (byte i = 0; i < EYES_AMOUNT; i++)
+  {
+    this->leds->setColorRGB(i, r, g, b);
+  }
 }
 
-void Screen::onStateChange()
+void Eyes::setup()
 {
-  lcd.clear();
-  colorBackground();
-  lcd.setCursor(0, 1);
-  // TODO: display the according text of the new state
-  lcd.print(currentState);
+  this->leds = new ChainableLED(this->pin, this->pin + 1, EYES_AMOUNT);
+  this->leds->init();
 }
 
-void Screen::loop(PoulpiState state)
+void Eyes::loop(PoulpiState state)
 {
   bool stateHasChanged = (state != currentState);
   if (stateHasChanged)

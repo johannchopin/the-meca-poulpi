@@ -85,7 +85,7 @@ void loop()
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();
-  screen->loop((states->getCurrent()));
+  screen->loop(states->getCurrent());
   buzzer->loop();
   gauge->loop(states->gaugeLevel);
   ble->loop(states);

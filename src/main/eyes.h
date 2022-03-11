@@ -3,6 +3,9 @@
 #include "inocomponent.h"
 #include "inocomponentwithsinglepin.h"
 #include "inocomponentwithstate.h"
+#include "color.h"
+
+#define SPORT_COLORS_AMOUNT 3
 
 #pragma once
 
@@ -20,4 +23,9 @@ public:
 private:
   ChainableLED *leds;
   void onStateChange();
+  void handleSportAnimation();
+  int debounceTime = 0;
+  int sportLightSwitchDelay = 100;
+  Color *sportColors[SPORT_COLORS_AMOUNT] = {new Color(255, 0, 0), new Color(0, 255, 0), new Color(0, 0, 255)};
+  int currentSportColorIndex = 0;
 };

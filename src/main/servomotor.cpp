@@ -40,7 +40,6 @@ void Servomotor::loop()
   if (this->isTentaculeAnimated)
   {
     int current = millis();
-    Serial.println(current - this->tentaculeDebounceTime);
     bool shouldTentaculePositionBeToggled = (current - this->tentaculeDebounceTime) > this->tentaculeDelay;
 
     if (shouldTentaculePositionBeToggled)

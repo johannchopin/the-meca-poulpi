@@ -13,6 +13,7 @@
 #include "eyes.h"
 #include "potentiometer.h"
 
+const int POTENTIOMETER_PIN = 0;
 const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
 const int BUTTON_PIN = 7;
@@ -58,6 +59,7 @@ void stateController()
 void setup()
 {
   Serial.begin(9600);
+
   ble = new Ble();
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
@@ -67,6 +69,7 @@ void setup()
   gauge = new Gauge(GAUGE_PIN);
   motor = new Servomotor(MOTOR_PIN);
   eyes = new Eyes(EYES_PIN);
+  potentiometer = new Potentiometer(POTENTIOMETER_PIN);
 
   states->setState(PoulpiState::SLEEPY);
 
@@ -93,7 +96,6 @@ void setup()
 
 void loop()
 {
-  Serial.println("Ping");
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();

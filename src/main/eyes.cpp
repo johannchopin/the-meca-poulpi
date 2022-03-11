@@ -2,6 +2,28 @@
 
 #define EYES_AMOUNT 2
 
+void Eyes::handleSportAnimation()
+{
+  int current = millis();
+  bool switchColor = (current - this->debounceTime) > this->sportLightSwitchDelay;
+
+  if (switchColor)
+  {
+    if ((this->currentSportColorIndex + 1) >= SPORT_COLORS_AMOUNT)
+    {
+      this->currentSportColorIndex = 0;
+    }
+    else
+    {
+      this->currentSportColorIndex++;
+    }
+
+    Color *newColor = this->sportColors[this->currentSportColorIndex];
+    this->setRgbColor(newColor->r, newColor->g, newColor->b);
+    this->debounceTime = current;
+  }
+}
+
 void Eyes::onStateChange()
 {
   int colorR = 15;
@@ -55,7 +77,12 @@ void Eyes::loop(PoulpiState state)
   bool stateHasChanged = (state != currentState);
   if (stateHasChanged)
   {
-    currentState = state;
+    this->currentState = state;
     onStateChange();
+  }
+
+  if (currentState == PoulpiState::SPORT)
+  {
+    this->handleSportAnimation();
   }
 }

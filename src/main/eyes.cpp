@@ -1,6 +1,39 @@
 #include "eyes.h"
 
 #define EYES_AMOUNT 2
+#define MEDITATION_OPACITY_STEP 0.005
+
+void Eyes::handleMeditationAnimation()
+{
+  int current = millis();
+  bool updateColor = (current - this->debounceTime) > this->meditationAnimationDelay;
+
+  if (updateColor)
+  {
+    Serial.println(this->meditationEyeOpacity);
+    if (this->meditationEyeShouldFadeUp)
+    {
+      this->meditationEyeOpacity += MEDITATION_OPACITY_STEP;
+
+      if (this->meditationEyeOpacity >= 0.90)
+      {
+        this->meditationEyeShouldFadeUp = false;
+      }
+    }
+    else
+    {
+      this->meditationEyeOpacity -= MEDITATION_OPACITY_STEP;
+
+      if (this->meditationEyeOpacity <= 0.5)
+      {
+        this->meditationEyeShouldFadeUp = true;
+      }
+    }
+
+    this->debounceTime = current;
+    this->setHslColor(0.135, 1, this->meditationEyeOpacity);
+  }
+}
 
 void Eyes::handleSportAnimation()
 {
@@ -30,13 +63,13 @@ void Eyes::onStateChange()
   int colorG = 75;
   int colorB = 185;
 
-  if (currentState == PoulpiState::MEDITATION || currentState == PoulpiState::DO_MEDITATION)
+  if (currentState == PoulpiState::DO_MEDITATION)
   {
     colorR = 19;
     colorB = 219;
     colorG = 79;
   }
-  else if (currentState == PoulpiState::SPORT || currentState == PoulpiState::DO_SPORT)
+  else if (currentState == PoulpiState::DO_SPORT)
   {
     colorR = 253;
     colorB = 229;
@@ -66,6 +99,14 @@ void Eyes::setRgbColor(int r, int g, int b)
   }
 }
 
+void Eyes::setHslColor(float hue, float saturation, float lightness)
+{
+  for (byte i = 0; i < EYES_AMOUNT; i++)
+  {
+    this->leds->setColorHSL(i, hue, saturation, lightness);
+  }
+}
+
 void Eyes::setup()
 {
   this->leds = new ChainableLED(this->pin, this->pin + 1, EYES_AMOUNT);
@@ -84,5 +125,9 @@ void Eyes::loop(PoulpiState state)
   if (currentState == PoulpiState::SPORT)
   {
     this->handleSportAnimation();
+  }
+  else if (currentState == PoulpiState::MEDITATION)
+  {
+    this->handleMeditationAnimation();
   }
 }

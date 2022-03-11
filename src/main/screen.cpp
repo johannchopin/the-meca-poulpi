@@ -27,13 +27,18 @@ void Screen::onStateChange()
 {
   lcd.clear();
   colorBackground();
-  lcd.setCursor(0, 1);
+ 
   // TODO: display the according text of the new state
-  // if (currentState == PoulpiState::SLEEPY) {
-    lcd.print(waterGlassSizeInMlDisplayed);
+  Serial.println(currentState);
+  //if (currentState == PoulpiState::SLEEPY) {
+     lcd.setCursor(0, 0);
+     lcd.print("Zzz  Ml du verre: ");
+     lcd.setCursor(10, 1);
+     lcd.print(waterGlassSizeInMlDisplayed);
+     lcd.print(" ml");
   //} else {
-  //   lcd.print(currentState);
-  // }
+     //lcd.print(currentState);
+  //}
 }
 
 void Screen::updateLocalStateFromStates(States* states) {

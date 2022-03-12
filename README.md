@@ -15,7 +15,8 @@ Rename the zip to "rgb_lcd.zip" before importing in Arduino IDE
 
 ### Grove-LED_Bar
 Checkout the doc https://github.com/Seeed-Studio/Grove_LED_Bar  
-[Download (last version)](https://github.com/Seeed-Studio/Grove_LED_Bar/archive/refs/tags/1.0.0.zip) -> because the last tagged version has a bug  
+[Download (last version)](https://github.com/Seeed-Studio/Grove_LED_Bar/archive/refs/tags/1.0.0.zip) -> because the last tagged version has a bug
+Rename the zip to "Grove_LED_Bar.zip" before importing in Arduino IDE
 
 ### Grove-Servo
 Checkout the doc https://wiki.seeedstudio.com/Grove-Servo/  

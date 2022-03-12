@@ -2,7 +2,6 @@
 #include <Arduino.h>
 #include <algorithm>
 #include "constants.h"
-#include "list.h"
 
 const int STATE_AMOUNT = 7;
 
@@ -43,10 +42,12 @@ public:
 
   // Sport
   int sportMusic;
-  list<string> sportExercices;
+  String* sportExercices; // should be enough
+  int sportExercicesAmount; // real amount of exercies in sportExercices
 
   // Tasks
-  list<string> tasks;
+  String* tasks; // should be enough
+  int tasksAmount; // real amount of task in tasks
 
 private:
   PoulpiState current = PoulpiState::SLEEPY;

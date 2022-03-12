@@ -11,9 +11,9 @@ BLEIntCharacteristic meditationReminderCharacteristic("19B10100-E8F2-537E-4f6C-D
 BLEIntCharacteristic taskReminderCharacteristic("19B10101-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
 
 BLEIntCharacteristic waterGoalCharacteristic("19B10110-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
-BleStringCharacteristic sportListCharacteristic("19B10111-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite, 1000);
-BleIntCharacteristic sportMusicCharacteristic("19B11001-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
-BleStringCharacteristic taskListCharacteristic("19B11000-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite, 1000);
+BLECharacteristic sportListCharacteristic("19B10111-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite, 1000);
+BLEIntCharacteristic sportMusicCharacteristic("19B11001-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
+BLECharacteristic taskListCharacteristic("19B11000-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite, 1000);
 
 void Ble::setup() {
   // Set name
@@ -23,14 +23,14 @@ void Ble::setup() {
   // Set the service with characteristics properly
   blePeripheral.setAdvertisedServiceUuid(poulpiService.uuid());
   blePeripheral.addAttribute(poulpiService);
-  ble.Peripheral.addAttribute(waterReminderCharacteristic);
-  waterReminderCharacteristic.set(Switch::ON);
-  ble.Peripheral.addAttribute(sportReminderCharacteristic);
-  sportReminderCharacteristic.set(Switch::ON);
-  ble.Peripheral.addAttribute(meditationReminderCharacteristic);
-  meditationReminderCharacteristic.set(Switch::ON);
-  ble.Peripheral.addAttribute(taskReminderCharacteristic);
-  taskReminderCharacteristic.set(Switch::ON);
+  blePeripheral.addAttribute(waterReminderCharacteristic);
+  waterReminderCharacteristic.setValue(Switch::ON);
+  blePeripheral.addAttribute(sportReminderCharacteristic);
+  sportReminderCharacteristic.setValue(Switch::ON);
+  blePeripheral.addAttribute(meditationReminderCharacteristic);
+  meditationReminderCharacteristic.setValue(Switch::ON);
+  blePeripheral.addAttribute(taskReminderCharacteristic);
+  taskReminderCharacteristic.setValue(Switch::ON);
 
   blePeripheral.addAttribute(waterGoalCharacteristic);
   waterGoalCharacteristic.setValue(DEFAULT_WATER_GOAL_IN_ML);
@@ -39,8 +39,8 @@ void Ble::setup() {
   blePeripheral.addAttribute(taskListCharacteristic);
   taskListCharacteristic.setValue("Define me in the app!");
 
-  blePeripheral.addAttribute(SportMusicCharacteristic)
-  sportMusicCharacteristic.setValue(Music::DOOM)
+  blePeripheral.addAttribute(sportMusicCharacteristic);
+  sportMusicCharacteristic.setValue(Music::TAKE_ON_ME);
 
   blePeripheral.begin();
 }
@@ -65,13 +65,15 @@ void Ble::loop(States* states) {
             states->waterGoal = waterGoalCharacteristic.value();
         }
         if (sportListCharacteristic.written()) {
-            // states->sportExercices = sportListCharacteristic.value().sp
+            states->sportExercices = LocalUtils::split(sportListCharacteristic.value(), CARRIAGE_RETURN);
+            states->sportExercicesAmount = LocalUtils::countItemsInArray(states->sportExercices);
         }
         if (sportMusicCharacteristic.written()) {
-            // TODO
+            states->sportMusic = sportMusicCharacteristic.value();
         }
         if (taskListCharacteristic.written()) {
-            // TODO
+            states->tasks = LocalUtils::split(taskListCharacteristic.value()), CARRIAGE_RETURN);
+            states->tasksAmount = LocalUtils::countItemsInArray(states->tasks);
         }
     }
 }

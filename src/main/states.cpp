@@ -5,21 +5,22 @@ States::States() {
   this->waterReminderIsActive = true;
   this->sportReminderIsActive = true;
   this->meditationReminderIsActive = true;
-  this->taskReminderIsactive = true;
+  this->taskReminderIsActive = true;
 
   this->gaugeLevel = 0.0F;
   this->waterGoal = DEFAULT_WATER_GOAL_IN_ML;
   this->waterGlassSizeInMl = DEFAULT_WATER_IN_GLASS_IN_ML;
 
-  int waterGlassSizeInMl;
-  float gaugeLevel;
-
   // Sport
-  int sportMusic = Music::DOOM;
-  this->sportExercices = {"Définis tes propres exercices!"};
+  this->sportMusic = Music::TAKE_ON_ME;
+  this->sportExercices = new String[ITEMS_IN_LIST];
+  this->sportExercices[0] = "Définis tes propres exercices!";
+  this->sportExercicesAmount = 1; 
 
   // Tasks
-  this->tasks = {"Définis tes propres tâches!"};
+  this->tasks = new String[ITEMS_IN_LIST];
+  this->tasks[0] = "Définis tes propres exercices!";
+  this->tasksAmount = 1; 
 }
 
 const PoulpiState States::getCurrent()

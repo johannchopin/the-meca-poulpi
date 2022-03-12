@@ -6,5 +6,6 @@
 #include "songs/takeonme.h"
 #include "songs/cantinaband.h"
 #include "songs/greensleeves.h"
+#include "songs/babyelephantwalk.h"
 
 #pragma once

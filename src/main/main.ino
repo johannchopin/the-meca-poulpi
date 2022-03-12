@@ -11,7 +11,9 @@
 #include "ble.h"
 #include "servomotor.h"
 #include "eyes.h"
+#include "potentiometer.h"
 
+const int POTENTIOMETER_PIN = 0;
 const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
 const int BUTTON_PIN = 7;
@@ -28,6 +30,7 @@ Buzzer *buzzer;
 Gauge *gauge;
 Servomotor *motor;
 Eyes *eyes;
+Potentiometer *potentiometer;
 
 PoulpiState state;
 
@@ -66,6 +69,7 @@ void setup()
   gauge = new Gauge(GAUGE_PIN);
   motor = new Servomotor(MOTOR_PIN);
   eyes = new Eyes(EYES_PIN);
+  potentiometer = new Potentiometer(POTENTIOMETER_PIN);
 
   states->setState(PoulpiState::SLEEPY);
 
@@ -73,11 +77,12 @@ void setup()
 
   stateSwitchButton->setup();
   waterButton->setup();
-  screen->setup(states->getCurrent());
+  screen->setup(states);
   buzzer->setup();
   gauge->setup();
   motor->setup();
   eyes->setup();
+  potentiometer->setup();
 
   ble->setup(); // should be after all other component setup
 
@@ -94,12 +99,13 @@ void loop()
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();
-  screen->loop(states->getCurrent());
+  screen->loop(states);
   buzzer->loop();
   gauge->loop(states->gaugeLevel);
   ble->loop(states);
   motor->loop();
   eyes->loop(states->getCurrent());
+  potentiometer->loop(states);
 
   stateController();
 }

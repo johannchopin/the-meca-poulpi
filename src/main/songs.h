@@ -5,5 +5,6 @@
 #include "songs/defaulttone.h"
 #include "songs/takeonme.h"
 #include "songs/cantinaband.h"
+#include "songs/greensleeves.h"
 
 #pragma once

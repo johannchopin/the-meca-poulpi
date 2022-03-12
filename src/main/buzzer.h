@@ -2,12 +2,17 @@
 #include "inocomponentwithsinglepin.h"
 #include "song.h"
 
+#pragma once
+
+// tempo to play the music -> default 1000ms
+#define DEFAULT_TEMPO 1000
+
 class Buzzer : public InoComponent, public InoComponentWithSinglePin
 {
 public:
   Buzzer(){};
   Buzzer(int pin) : InoComponentWithSinglePin(pin) {}
-  void playTone(Song *song);
+  void playTone(Song *song, int noteDurationFactor);
   void stopTone();
   void setup();
   void loop();
@@ -15,7 +20,7 @@ public:
   Song *song;
 private:
   void playSong();
-  void setDurationsTimestamp();
+  void setDurationsTimestamp(int noteDurationFactor);
   void playNote(int note);
   int *durationsTimestamp;
   int currentNote;

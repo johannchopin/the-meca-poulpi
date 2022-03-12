@@ -2,6 +2,7 @@
 #include "../pitches.h"
 
 #define LULLABY_SOUND_LENGTH 54
+#define LULLABY_TEMPO 1500
 
 // BRAM'S LULLABY
 int *lullabyMelody = new int[LULLABY_SOUND_LENGTH]{

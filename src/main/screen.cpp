@@ -35,7 +35,8 @@ void Screen::onStateChange()
      lcd.print("Zzz  Ml du verre: ");
      lcd.setCursor(0, 1);
      lcd.print("Zzz");
-     lcd.setCursor(waterGlassSizeInMlDisplayed >= 100 ? 10 : 11, 1);
+     int startCol = (waterGlassSizeInMlDisplayed == 0) ? 12 : (waterGlassSizeInMlDisplayed < 100) ? 11 : (waterGlassSizeInMlDisplayed < 1000) ? 10 : 9;
+     lcd.setCursor(startCol, 1);
      lcd.print(waterGlassSizeInMlDisplayed);
      lcd.print(" ml");
   //} else {

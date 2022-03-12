@@ -39,13 +39,13 @@ void songsController()
 {
   buzzer->stopTone();
 
-  if (state == PoulpiState::SPORT)
+  if (state == PoulpiState::SPORT_REMINDER)
   {
     Serial.println("SPORT");
     buzzer->playTone(takeOnMe, TAKE_ON_ME_TEMPO);
   }
 
-  if (state == PoulpiState::TASKS)
+  if (state == PoulpiState::TASK_REMINDER)
   {
     Serial.println("TASKS");
     buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
@@ -56,13 +56,13 @@ void songsController()
     Serial.println("SLEEPY");
   }
 
-  if (state == PoulpiState::MEDITATION)
+  if (state == PoulpiState::DOING_MEDITATION)
   {
     Serial.println("MEDITATION");
     buzzer->playTone(lullaby, LULLABY_TEMPO);
   }
 
-  if (state == PoulpiState::DO_SPORT)
+  if (state == PoulpiState::DOING_SPORT)
   {
     Serial.println("DO_SPORT");
     buzzer->playTone(babyelephantwalkSong, BABYELEPHANTWALK_TEMPO);
@@ -71,7 +71,7 @@ void songsController()
 
 void motorController()
 {
-  if (state == PoulpiState::SPORT)
+  if (state == PoulpiState::DOING_SPORT)
   {
     motor->startTentaculeAnimation();
   }
@@ -100,7 +100,7 @@ void stateController()
 void setup()
 {
   Serial.begin(9600);
-
+  delay(3000);
   ble = new Ble();
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
@@ -133,6 +133,7 @@ void setup()
 
 void loop()
 {
+  Serial.println("loop");
   stateController();
 
   states->loop();

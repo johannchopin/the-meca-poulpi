@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "constants.h"
 
-const int STATE_AMOUNT = 7;
+const int STATE_AMOUNT = 8;
 
 class States
 {
@@ -12,12 +12,13 @@ public:
 
   const PoulpiState states[STATE_AMOUNT] = {
     SLEEPY,
-    MEDITATION,
-    DO_MEDITATION,
-    SPORT,
-    DO_SPORT,
-    WATER,
-    TASKS,
+    MEDITATION_REMINDER,
+    DOING_MEDITATION,
+    SPORT_REMINDER,
+    DOING_SPORT,
+    WATER_REMINDER,
+    DRINKING_WATER,
+    TASK_REMINDER,
   };
 
   const PoulpiState getCurrent();

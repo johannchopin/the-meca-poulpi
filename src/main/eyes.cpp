@@ -62,25 +62,25 @@ void Eyes::onStateChange()
   int colorG = 75;
   int colorB = 185;
 
-  if (currentState == PoulpiState::DO_MEDITATION)
+  if (currentState == PoulpiState::DOING_MEDITATION)
   {
     colorR = 19;
     colorB = 219;
     colorG = 79;
   }
-  else if (currentState == PoulpiState::DO_SPORT)
+  else if (currentState == PoulpiState::DOING_SPORT)
   {
     colorR = 253;
     colorB = 229;
     colorG = 39;
   }
-  else if (currentState == PoulpiState::WATER)
+  else if (currentState == PoulpiState::WATER_REMINDER)
   {
     colorR = 94;
     colorB = 173;
     colorG = 191;
   }
-  else if (currentState == PoulpiState::TASKS)
+  else if (currentState == PoulpiState::TASK_REMINDER)
   {
     colorR = 248;
     colorB = 99;
@@ -121,11 +121,11 @@ void Eyes::loop(PoulpiState state)
     onStateChange();
   }
 
-  if (currentState == PoulpiState::SPORT)
+  if (currentState == PoulpiState::DOING_SPORT)
   {
     this->handleSportAnimation();
   }
-  else if (currentState == PoulpiState::MEDITATION)
+  else if (currentState == PoulpiState::DOING_MEDITATION)
   {
     this->handleMeditationAnimation();
   }

@@ -1,5 +1,8 @@
 #pragma once
+#include <Arduino.h>
+#include <algorithm>
 #include "constants.h"
+#include "list.h"
 
 const int STATE_AMOUNT = 7;
 
@@ -24,11 +27,26 @@ public:
   void setState(PoulpiState const state);
   void loop();
 
-  float gaugeLevel;
-  void incrementWater();
-  unsigned int waterObjective;
   int winkEye;
+
+  // Reminders
+  bool waterReminderIsActive;
+  bool sportReminderIsActive;
+  bool meditationReminderIsActive;
+  bool taskReminderIsActive;
+
+  // Water
+  void incrementWater();
+  unsigned int waterGoal;
   int waterGlassSizeInMl;
+  float gaugeLevel;
+
+  // Sport
+  int sportMusic;
+  list<string> sportExercices;
+
+  // Tasks
+  list<string> tasks;
 
 private:
   PoulpiState current = PoulpiState::SLEEPY;

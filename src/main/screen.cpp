@@ -33,7 +33,9 @@ void Screen::onStateChange()
   //if (currentState == PoulpiState::SLEEPY) {
      lcd.setCursor(0, 0);
      lcd.print("Zzz  Ml du verre: ");
-     lcd.setCursor(10, 1);
+     lcd.setCursor(0, 1);
+     lcd.print("Zzz");
+     lcd.setCursor(waterGlassSizeInMlDisplayed >= 100 ? 10 : 11, 1);
      lcd.print(waterGlassSizeInMlDisplayed);
      lcd.print(" ml");
   //} else {

@@ -6,7 +6,7 @@ States::States() {
   this->gaugeLevel = 0.0F;
   this->waterObjective = DEFAULT_WATER_TO_DRINK_IN_ML;
   this->winkEye = 0;
-  this->waterGlassSizeInMl = 200;
+  this->waterGlassSizeInMl = DEFAULT_WATER_IN_GLASS_IN_ML;
 }
 
 const PoulpiState States::getCurrent()
@@ -34,7 +34,7 @@ void States::loop()
   bool shouldStateGoNext = (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
   if (shouldStateGoNext)
   {
-    goToNext();
+    // goToNext();
     lastStateChangeDebounceTime = millis();
   }
 }

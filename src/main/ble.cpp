@@ -65,14 +65,14 @@ void Ble::loop(States* states) {
             states->waterGoal = waterGoalCharacteristic.value();
         }
         if (sportListCharacteristic.written()) {
-            states->sportExercices = LocalUtils::split(sportListCharacteristic.value(), CARRIAGE_RETURN);
+            states->sportExercices = LocalUtils::split(String((char *)sportListCharacteristic.value()), CARRIAGE_RETURN);
             states->sportExercicesAmount = LocalUtils::countItemsInArray(states->sportExercices);
         }
         if (sportMusicCharacteristic.written()) {
             states->sportMusic = sportMusicCharacteristic.value();
         }
         if (taskListCharacteristic.written()) {
-            states->tasks = LocalUtils::split(taskListCharacteristic.value()), CARRIAGE_RETURN);
+            states->tasks = LocalUtils::split(String((char *)taskListCharacteristic.value()), CARRIAGE_RETURN);
             states->tasksAmount = LocalUtils::countItemsInArray(states->tasks);
         }
     }

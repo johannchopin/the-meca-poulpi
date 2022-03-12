@@ -24,16 +24,14 @@ void Buzzer::setup()
 void Buzzer::setDurationsTimestamp()
 {
   int current = millis();
-  int dest[this->song->length];
+  this->durationsTimestamp = new int[this->song->length];
 
   for (int durationIndex = 0; durationIndex < this->song->length; durationIndex++)
   {
     int noteDuration = 1000 / this->song->durations[durationIndex];
     current += noteDuration;
-    dest[durationIndex] = current;
+    this->durationsTimestamp[durationIndex] = current;
   }
-
-  this->durationsTimestamp = dest;
 }
 
 void Buzzer::playNote(int note)
@@ -73,7 +71,6 @@ void Buzzer::loop()
 {
   if (isPlaying)
   {
-    this->startSongTime = millis();
     this->playSong();
   }
 }

@@ -18,6 +18,5 @@ private:
   void setDurationsTimestamp();
   void playNote(int note);
   int *durationsTimestamp;
-  unsigned long startSongTime = 0;
   int currentNote;
 };

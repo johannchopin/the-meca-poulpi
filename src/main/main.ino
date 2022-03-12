@@ -1,6 +1,7 @@
 #include <string>
-#include "constants.h"
+#include "song.h"
 #include "pitches.h"
+#include "constants.h"
 #include "states.h"
 #include "button.h"
 #include "screen.h"
@@ -11,6 +12,8 @@
 #include "ble.h"
 #include "servomotor.h"
 #include "eyes.h"
+
+#include "songs.h"
 
 const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
@@ -85,7 +88,7 @@ void setup()
   // int *durations = new int[8]{4, 8, 8, 4, 4, 4, 4, 4};
   // Song *song = new Song(melody, durations, 8);
 
-  stateSwitchButton->onClick(std::bind(&States::goToNext, states));
+  stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, song));
   waterButton->onClick(std::bind(&States::incrementWater, states));
 }
 

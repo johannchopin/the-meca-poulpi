@@ -86,8 +86,7 @@ void setup()
   motor->setup();
   eyes->setup();
   potentiometer->setup();
-
-  ble->setup(); // should be after all other component setup
+  // ble->setup(); // should be after all other component setup
 
   stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, song, DEFAULT_TEMPO));
   waterButton->onClick(std::bind(&States::incrementWater, states));
@@ -102,7 +101,7 @@ void loop()
   screen->loop(states);
   buzzer->loop();
   gauge->loop(states->gaugeLevel);
-  ble->loop(states);
+  // ble->loop(states);
   motor->loop();
   eyes->loop(states->getCurrent());
   potentiometer->loop(states);

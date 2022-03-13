@@ -3,7 +3,7 @@
 #include "song.h"
 #include "pitches.h"
 
-#include "lullaby.h"
+#include "song_lullaby.h"
 #include "song_takeonme.h"
 
 /*

@@ -51,8 +51,6 @@ void setup() {
   winkEyeCharacteristic.setValue(0);
  
   blePeripheral.begin();
-
-  Serial.println("BLE Peripheral initialized");
 }
 
 void loop() {
@@ -62,7 +60,6 @@ void loop() {
   {
     if (winkEyeCharacteristic.written()) {
       // TODO: make enumeration 0: off and 1: on
-      Serial.println(winkEyeCharacteristic.value());
       if(winkEyeCharacteristic.value() == 1) {
         for (byte i=0; i<NUM_LEDS; i++) {
           leds.setColorHSL(i, 0.0, 1.0, 0.5);

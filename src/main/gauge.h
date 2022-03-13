@@ -12,8 +12,9 @@ public:
   Gauge(int pin) : InoComponentWithSinglePin(pin){};
 
   void setup();
-  void loop(float gaugeLevel);
+  void loop(int waterGoal, int waterDrunkAmount);
 
 private:
   Grove_LED_Bar *bar = NULL;
+  float level;
 };

@@ -35,10 +35,11 @@ public:
   bool taskReminderIsActive;
 
   // Water
-  void incrementWater();
+  void drinkOneGlass();
   unsigned int waterGoal;
   int waterGlassSizeInMl;
-  float gaugeLevel;
+  int waterGlassDrunk;
+  int waterDrunkAmountInMl;
 
   // Sport
   int sportMusic;

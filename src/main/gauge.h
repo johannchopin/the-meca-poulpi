@@ -8,13 +8,12 @@
 
 class Gauge : public InoComponent, public InoComponentWithSinglePin
 {
-  public:
-    Gauge(int pin) : InoComponentWithSinglePin(pin){};
+public:
+  Gauge(int pin) : InoComponentWithSinglePin(pin){};
 
-    void setup();
-    void loop(float gaugeLevel);
-  
-  private:
-    Grove_LED_Bar *bar = NULL;
+  void setup();
+  void loop(float gaugeLevel);
 
+private:
+  Grove_LED_Bar *bar = NULL;
 };

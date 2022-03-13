@@ -10,7 +10,6 @@ void Eyes::handleMeditationAnimation()
 
   if (updateColor)
   {
-    Serial.println(this->meditationEyeOpacity);
     if (this->meditationEyeShouldFadeUp)
     {
       this->meditationEyeOpacity += MEDITATION_OPACITY_STEP;

@@ -33,8 +33,7 @@ int *miichanelMelody = new int[MIICHANNEL_SOUND_LENGTH]{
     NOTE_DS5,
     NOTE_D5,
     REST,
-    REST
-};
+    REST};
 int *miichanelDurations = new int[MIICHANNEL_SOUND_LENGTH]{
     8,
     8,
@@ -63,6 +62,5 @@ int *miichanelDurations = new int[MIICHANNEL_SOUND_LENGTH]{
     8,
     8,
     8,
-    4
-};
+    4};
 Song *miichanelSong = new Song(miichanelMelody, miichanelDurations, MIICHANNEL_SOUND_LENGTH);

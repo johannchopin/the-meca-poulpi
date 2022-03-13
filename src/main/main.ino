@@ -89,7 +89,7 @@ void setup()
 
   ble->setup(); // should be after all other component setup
 
-  stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, song));
+  stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, song, DEFAULT_TEMPO));
   waterButton->onClick(std::bind(&States::incrementWater, states));
   // waterButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
 }

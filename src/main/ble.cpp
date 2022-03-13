@@ -18,8 +18,8 @@ BLECharacteristic taskListCharacteristic("19B11000-E8F2-537E-4f6C-D104768A1214",
 
 void Ble::setup() {
   // Set name
-  blePeripheral.setLocalName("Poulpi");
-  blePeripheral.setDeviceName("Poulpi");
+  blePeripheral.setLocalName("PoulpiA");
+  blePeripheral.setDeviceName("PoulpiA");
 
   // Set the service with characteristics properly
   blePeripheral.setAdvertisedServiceUuid(poulpiService.uuid());
@@ -38,9 +38,7 @@ void Ble::setup() {
   blePeripheral.addAttribute(waterGlassSizeInMlCharacteristic);
   waterGlassSizeInMlCharacteristic.setValue(DEFAULT_WATER_IN_GLASS_IN_ML);
   blePeripheral.addAttribute(sportListCharacteristic);
-  sportListCharacteristic.setValue("Define me in the app!");
   blePeripheral.addAttribute(taskListCharacteristic);
-  taskListCharacteristic.setValue("Define me in the app!");
 
   blePeripheral.addAttribute(sportMusicCharacteristic);
   sportMusicCharacteristic.setValue(Music::TAKE_ON_ME);

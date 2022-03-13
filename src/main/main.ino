@@ -86,6 +86,7 @@ void setup()
 
   stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, song));
   waterButton->onClick(std::bind(&States::incrementWater, states));
+  // waterButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
 }
 
 void loop()

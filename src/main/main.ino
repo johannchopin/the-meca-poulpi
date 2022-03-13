@@ -46,6 +46,11 @@ void songsController()
 
   if (state == PoulpiState::TASKS)
   {
+    buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
+  }
+
+  if (state == PoulpiState::MEDITATION)
+  {
     buzzer->playTone(lullaby, LULLABY_TEMPO);
   }
 }

@@ -6,6 +6,7 @@
 #include "song_lullaby.h"
 #include "song_takeonme.h"
 #include "song_cantinaband.h"
+#include "song_babyelephantwalk.h"
 
 /*
 #include "songs/defaulttone.h"

@@ -1,8 +1,4 @@
-#include "../song.h"
-#include "../pitches.h"
-
-#define BABYELEPHANTWALK_SOUND_LENGTH 68
-#define BABYELEPHANTWALK_TEMPO 1500
+#include "song_babyelephantwalk.h"
 
 // DEFAULT MELODY
 int *babyelephantwalkMelody = new int[BABYELEPHANTWALK_SOUND_LENGTH]{

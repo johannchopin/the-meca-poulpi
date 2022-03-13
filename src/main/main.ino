@@ -1,5 +1,4 @@
 #include <string>
-#include "song.h"
 #include "pitches.h"
 #include "constants.h"
 #include "states.h"
@@ -36,9 +35,23 @@ Potentiometer *potentiometer;
 
 PoulpiState state;
 
-void onStateChange()
+void songsController()
 {
-  state = states->getCurrent();
+  buzzer->stopTone();
+
+  if (state == PoulpiState::SPORT)
+  {
+    buzzer->playTone(takeOnMe, TAKE_ON_ME_TEMPO);
+  }
+
+  if (state == PoulpiState::TASKS)
+  {
+    buzzer->playTone(lullaby, LULLABY_TEMPO);
+  }
+}
+
+void motorController()
+{
   if (state == PoulpiState::SPORT)
   {
     motor->startTentaculeAnimation();
@@ -49,11 +62,18 @@ void onStateChange()
   }
 }
 
+void onStateChange()
+{
+  motorController();
+  songsController();
+}
+
 void stateController()
 {
   bool stateHasChanged = (state != states->getCurrent());
   if (stateHasChanged)
   {
+    state = states->getCurrent();
     onStateChange();
   }
 }

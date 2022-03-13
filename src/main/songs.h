@@ -4,10 +4,10 @@
 #include "pitches.h"
 
 #include "lullaby.h"
+#include "song_takeonme.h"
 
 /*
 #include "songs/defaulttone.h"
-#include "songs/takeonme.h"
 #include "songs/cantinaband.h"
 #include "songs/greensleeves.h"
 #include "songs/babyelephantwalk.h"

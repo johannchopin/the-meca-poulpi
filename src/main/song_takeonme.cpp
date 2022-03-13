@@ -1,7 +1,4 @@
-#include "../song.h"
-#include "../pitches.h"
-
-#define TAKE_ON_ME_SOUND_LENGTH 96
+#include "song_takeonme.h"
 
 // TAKE ON ME
 int *takeOnMeMelody = new int[TAKE_ON_ME_SOUND_LENGTH]{

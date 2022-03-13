@@ -1,8 +1,4 @@
-#include "../song.h"
-#include "../pitches.h"
-
-#define LULLABY_SOUND_LENGTH 54
-#define LULLABY_TEMPO 1500
+#include "lullaby.h"
 
 // BRAM'S LULLABY
 int *lullabyMelody = new int[LULLABY_SOUND_LENGTH]{

@@ -7,7 +7,6 @@
 #include "screen.h"
 #include "waterbutton.h"
 #include "buzzer.h"
-#include "song.h"
 #include "gauge.h"
 #include "ble.h"
 #include "servomotor.h"
@@ -88,7 +87,7 @@ void setup()
   potentiometer->setup();
   // ble->setup(); // should be after all other component setup
 
-  stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, song, DEFAULT_TEMPO));
+  stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, lullaby, DEFAULT_TEMPO));
   waterButton->onClick(std::bind(&States::incrementWater, states));
   // waterButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
 }

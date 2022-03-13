@@ -35,7 +35,8 @@ BLEPeripheral blePeripheral;
 BLEService poulpiEyeService("19B10000-E8F2-537E-4f6C-D104768A1214");
 BLEUnsignedCharCharacteristic winkEyeCharacteristic("19B10001-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
   leds.init();
 
@@ -49,27 +50,32 @@ void setup() {
   blePeripheral.addAttribute(poulpiEyeService);
   blePeripheral.addAttribute(winkEyeCharacteristic);
   winkEyeCharacteristic.setValue(0);
- 
+
   blePeripheral.begin();
 
   Serial.println("BLE Peripheral initialized");
 }
 
-void loop() {
+void loop()
+{
   // check if a peripheral has been discovered
   BLECentral central = blePeripheral.central();
-  if(central)
+  if (central)
   {
-    if (winkEyeCharacteristic.written()) {
+    if (winkEyeCharacteristic.written())
+    {
       // TODO: make enumeration 0: off and 1: on
-      Serial.println(winkEyeCharacteristic.value());
-      if(winkEyeCharacteristic.value() == 1) {
-        for (byte i=0; i<NUM_LEDS; i++) {
+      if (winkEyeCharacteristic.value() == 1)
+      {
+        for (byte i = 0; i < NUM_LEDS; i++)
+        {
           leds.setColorHSL(i, 0.0, 1.0, 0.5);
         }
       }
-      else {
-        for (byte i=0; i<NUM_LEDS; i++) {
+      else
+      {
+        for (byte i = 0; i < NUM_LEDS; i++)
+        {
           leds.setColorHSL(i, 82.0, 0.0, 0.0);
         }
       }

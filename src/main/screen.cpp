@@ -2,7 +2,7 @@
 
 rgb_lcd lcd;
 
-void Screen::setup(States* states)
+void Screen::setup(States *states)
 {
   updateLocalStateFromStates(states);
   lcd.begin(16, 2);
@@ -10,7 +10,7 @@ void Screen::setup(States* states)
   onStateChange();
 }
 
-void Screen::loop(States* states)
+void Screen::loop(States *states)
 {
   PoulpiState currentGlobalState = states->getCurrent();
   int waterGlassSizeInMl = states->waterGlassSizeInMl;
@@ -27,24 +27,26 @@ void Screen::onStateChange()
 {
   lcd.clear();
   colorBackground();
- 
+
   // TODO: display the according text of the new state
-  Serial.println(currentState);
-  //if (currentState == PoulpiState::SLEEPY) {
-     lcd.setCursor(0, 0);
-     lcd.print("Zzz  Ml du verre: ");
-     lcd.setCursor(0, 1);
-     lcd.print("Zzz");
-     int startCol = (waterGlassSizeInMlDisplayed == 0) ? 12 : (waterGlassSizeInMlDisplayed < 100) ? 11 : (waterGlassSizeInMlDisplayed < 1000) ? 10 : 9;
-     lcd.setCursor(startCol, 1);
-     lcd.print(waterGlassSizeInMlDisplayed);
-     lcd.print(" ml");
+  // if (currentState == PoulpiState::SLEEPY) {
+  lcd.setCursor(0, 0);
+  lcd.print("Zzz  Ml du verre: ");
+  lcd.setCursor(0, 1);
+  lcd.print("Zzz");
+  int startCol = (waterGlassSizeInMlDisplayed == 0) ? 12 : (waterGlassSizeInMlDisplayed < 100) ? 11
+                                                       : (waterGlassSizeInMlDisplayed < 1000)  ? 10
+                                                                                               : 9;
+  lcd.setCursor(startCol, 1);
+  lcd.print(waterGlassSizeInMlDisplayed);
+  lcd.print(" ml");
   //} else {
-     //lcd.print(currentState);
+  // lcd.print(currentState);
   //}
 }
 
-void Screen::updateLocalStateFromStates(States* states) {
+void Screen::updateLocalStateFromStates(States *states)
+{
   currentState = states->getCurrent();
   waterGlassSizeInMlDisplayed = states->waterGlassSizeInMl;
 }

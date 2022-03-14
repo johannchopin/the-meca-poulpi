@@ -53,7 +53,7 @@ void songsController()
   if (state == PoulpiState::SLEEPY)
   {
     Serial.println("SLEEPY");
-    buzzer->playTone(greenSleevesSong, GREENSLEEVES_TEMPO);
+    //buzzer->playTone(greenSleevesSong, GREENSLEEVES_TEMPO);
   }
 
   if (state == PoulpiState::MEDITATION)
@@ -133,6 +133,9 @@ void setup()
 
 void loop()
 {
+  stateController();
+
+  Serial.println("alive");
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();
@@ -144,5 +147,4 @@ void loop()
   eyes->loop(states->getCurrent());
   potentiometer->loop(states);
 
-  stateController();
 }

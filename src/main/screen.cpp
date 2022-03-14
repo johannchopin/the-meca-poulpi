@@ -40,9 +40,6 @@ void Screen::onStateChange()
   lcd.setCursor(startCol, 1);
   lcd.print(waterGlassSizeInMlDisplayed);
   lcd.print(" ml");
-  //} else {
-  // lcd.print(currentState);
-  //}
 }
 
 void Screen::updateLocalStateFromStates(States *states)

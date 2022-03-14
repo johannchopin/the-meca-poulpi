@@ -1,6 +1,7 @@
 #include "states.h"
 
-States::States() {
+States::States()
+{
   this->winkEye = 0;
   this->waterReminderIsActive = true;
   this->sportReminderIsActive = true;
@@ -15,12 +16,12 @@ States::States() {
   this->sportMusic = Music::TAKE_ON_ME;
   this->sportExercices = new String[ITEMS_IN_LIST];
   this->sportExercices[0] = "Définis tes propres exercices!";
-  this->sportExercicesAmount = 1; 
+  this->sportExercicesAmount = 1;
 
   // Tasks
   this->tasks = new String[ITEMS_IN_LIST];
   this->tasks[0] = "Définis tes propres exercices!";
-  this->tasksAmount = 1; 
+  this->tasksAmount = 1;
 }
 
 const PoulpiState States::getCurrent()
@@ -35,7 +36,7 @@ void States::setState(PoulpiState state)
 
 int States::getStatesAmount()
 {
-  return sizeof(states) / sizeof(states[0]);
+  return STATE_AMOUNT;
 }
 
 void States::goToNext()
@@ -53,6 +54,7 @@ void States::loop()
   }
 }
 
-void States::incrementWater() {
+void States::incrementWater()
+{
   this->gaugeLevel += 1;
 }

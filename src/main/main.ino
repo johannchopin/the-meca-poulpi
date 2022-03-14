@@ -47,11 +47,25 @@ void songsController()
   if (state == PoulpiState::TASKS)
   {
     buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
+    Serial.println("TASKS");
+  }
+
+  if (state == PoulpiState::SLEEPY)
+  {
+    Serial.println("SLEEPY");
+    buzzer->playTone(greenSleevesSong, GREENSLEEVES_TEMPO);
   }
 
   if (state == PoulpiState::MEDITATION)
   {
+    Serial.println("MEDITATION");
     buzzer->playTone(lullaby, LULLABY_TEMPO);
+  }
+
+  if (state == PoulpiState::DO_SPORT)
+  {
+    Serial.println("DO_SPORT");
+    buzzer->playTone(babyelephantwalkSong, BABYELEPHANTWALK_TEMPO);
   }
 }
 

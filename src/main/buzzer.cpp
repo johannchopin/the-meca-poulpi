@@ -24,6 +24,8 @@ void Buzzer::setup()
 void Buzzer::setDurationsTimestamp(int noteDurationFactor)
 {
   int current = millis();
+
+  delete[] this->durationsTimestamp;
   this->durationsTimestamp = new int[this->song->length];
 
   for (int durationIndex = 0; durationIndex < this->song->length; durationIndex++)

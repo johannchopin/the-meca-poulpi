@@ -3,7 +3,7 @@
 void Gauge::setup()
 {
   pinMode(this->pin, OUTPUT);
-  this->bar = new Grove_LED_Bar((int)this->pin, this->pin - 1, false);
+  this->bar = new Grove_LED_Bar((int)this->pin, this->pin + 1, false);
   this->bar->begin();
   this->level = 0.0F;
   this->bar->setLevel(this->level);
@@ -11,7 +11,7 @@ void Gauge::setup()
 
 void Gauge::loop(int waterGoal, int waterDrunkAmount)
 {
-  float progress = (float) waterDrunkAmount / waterGoal * 10;
+  float progress = (float)waterDrunkAmount / waterGoal * 10;
 
   if (progress > 10.0)
   {

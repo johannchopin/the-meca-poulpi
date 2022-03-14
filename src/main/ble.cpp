@@ -16,63 +16,74 @@ BLEIntCharacteristic waterGlassSizeInMlCharacteristic("19B11010-E8F2-537E-4f6C-D
 BLEIntCharacteristic sportMusicCharacteristic("19B11001-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
 // BLECharacteristic taskListCharacteristic("19B11000-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite, 1000);
 
-void Ble::setup() {
-  // Set name
-  blePeripheral.setLocalName("PoulpiA");
-  blePeripheral.setDeviceName("PoulpiA");
+void Ble::setup()
+{
+    // Set name
+    blePeripheral.setLocalName("PoulpiA");
+    blePeripheral.setDeviceName("PoulpiA");
 
-  // Set the service with characteristics properly
-  blePeripheral.setAdvertisedServiceUuid(poulpiService.uuid());
-  blePeripheral.addAttribute(poulpiService);
-  blePeripheral.addAttribute(waterReminderCharacteristic);
-  waterReminderCharacteristic.setValue(Switch::ON);
-  blePeripheral.addAttribute(sportReminderCharacteristic);
-  sportReminderCharacteristic.setValue(Switch::ON);
-  blePeripheral.addAttribute(meditationReminderCharacteristic);
-  meditationReminderCharacteristic.setValue(Switch::ON);
-  blePeripheral.addAttribute(taskReminderCharacteristic);
-  taskReminderCharacteristic.setValue(Switch::ON);
+    // Set the service with characteristics properly
+    blePeripheral.setAdvertisedServiceUuid(poulpiService.uuid());
+    blePeripheral.addAttribute(poulpiService);
+    blePeripheral.addAttribute(waterReminderCharacteristic);
+    waterReminderCharacteristic.setValue(Switch::ON);
+    blePeripheral.addAttribute(sportReminderCharacteristic);
+    sportReminderCharacteristic.setValue(Switch::ON);
+    blePeripheral.addAttribute(meditationReminderCharacteristic);
+    meditationReminderCharacteristic.setValue(Switch::ON);
+    blePeripheral.addAttribute(taskReminderCharacteristic);
+    taskReminderCharacteristic.setValue(Switch::ON);
 
-  blePeripheral.addAttribute(waterGoalCharacteristic);
-  waterGoalCharacteristic.setValue(DEFAULT_WATER_GOAL_IN_ML);
-  blePeripheral.addAttribute(waterGlassSizeInMlCharacteristic);
-  waterGlassSizeInMlCharacteristic.setValue(DEFAULT_WATER_IN_GLASS_IN_ML);
-//   blePeripheral.addAttribute(sportListCharacteristic);
-//   blePeripheral.addAttribute(taskListCharacteristic);
+    blePeripheral.addAttribute(waterGoalCharacteristic);
+    waterGoalCharacteristic.setValue(DEFAULT_WATER_GOAL_IN_ML);
+    blePeripheral.addAttribute(waterGlassSizeInMlCharacteristic);
+    waterGlassSizeInMlCharacteristic.setValue(DEFAULT_WATER_IN_GLASS_IN_ML);
+    //   blePeripheral.addAttribute(sportListCharacteristic);
+    //   blePeripheral.addAttribute(taskListCharacteristic);
 
-  blePeripheral.addAttribute(sportMusicCharacteristic);
-  sportMusicCharacteristic.setValue(Music::TAKE_ON_ME);
+    blePeripheral.addAttribute(sportMusicCharacteristic);
+    sportMusicCharacteristic.setValue(Music::TAKE_ON_ME);
 
-  blePeripheral.begin();
+    blePeripheral.begin();
 }
 
-void Ble::loop(States* states) {
+void Ble::loop(States *states)
+{
     BLECentral central = blePeripheral.central();
-    if(central){
-        if (waterReminderCharacteristic.written()) {
+    if (central)
+    {
+        states->deviceConnectedOnce = true;
+        if (waterReminderCharacteristic.written())
+        {
             // TODO
         }
-        if (sportReminderCharacteristic.written()) {
+        if (sportReminderCharacteristic.written())
+        {
             // TODO
         }
-        if (meditationReminderCharacteristic.written()) {
+        if (meditationReminderCharacteristic.written())
+        {
             // TODO
         }
-        if (taskReminderCharacteristic.written()) {
+        if (taskReminderCharacteristic.written())
+        {
             // TODO
         }
 
-        if (waterGoalCharacteristic.written()) {
+        if (waterGoalCharacteristic.written())
+        {
             states->waterGoal = waterGoalCharacteristic.value();
         }
-        if (waterGlassSizeInMlCharacteristic.written()) {
+        if (waterGlassSizeInMlCharacteristic.written())
+        {
             states->waterGlassSizeInMl = waterGlassSizeInMlCharacteristic.value();
         }
         // if (sportListCharacteristic.written()) {
         //     states->sportExercices = LocalUtils::split(String((char *)sportListCharacteristic.value()), CARRIAGE_RETURN);
         //     states->sportExercicesAmount = LocalUtils::countItemsInArray(states->sportExercices);
         // }
-        if (sportMusicCharacteristic.written()) {
+        if (sportMusicCharacteristic.written())
+        {
             states->sportMusic = sportMusicCharacteristic.value();
         }
         // if (taskListCharacteristic.written()) {

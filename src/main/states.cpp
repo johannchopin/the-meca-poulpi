@@ -2,6 +2,9 @@
 
 States::States() {
   this->winkEye = 0;
+  this->deviceConnectedOnce = false;
+
+  // Reminders
   this->waterReminderIsActive = true;
   this->sportReminderIsActive = true;
   this->meditationReminderIsActive = true;

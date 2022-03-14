@@ -27,6 +27,7 @@ public:
   void loop();
 
   int winkEye;
+  bool deviceConnectedOnce;
 
   // Reminders
   bool waterReminderIsActive;

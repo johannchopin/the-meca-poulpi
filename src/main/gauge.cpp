@@ -3,7 +3,7 @@
 void Gauge::setup()
 {
   pinMode(this->pin, OUTPUT);
-  this->bar = new Grove_LED_Bar((int)this->pin, this->pin - 1, true);
+  this->bar = new Grove_LED_Bar((int)this->pin, this->pin - 1, false);
   this->bar->begin();
   this->level = 0.0F;
   this->bar->setLevel(this->level);

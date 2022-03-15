@@ -15,7 +15,7 @@
 #include "songs.h"
 
 const int POTENTIOMETER_PIN = 0;
-const int BUZZER_PIN = 11;
+const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
 const int BUTTON_PIN = 7;
 const int GAUGE_PIN = 8;
@@ -41,13 +41,14 @@ void songsController()
 
   if (state == PoulpiState::SPORT)
   {
+    Serial.println("SPORT");
     buzzer->playTone(takeOnMe, TAKE_ON_ME_TEMPO);
   }
 
   if (state == PoulpiState::TASKS)
   {
-    buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
     Serial.println("TASKS");
+    buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
   }
 
   if (state == PoulpiState::SLEEPY)
@@ -135,7 +136,6 @@ void loop()
 {
   stateController();
 
-  Serial.println("alive");
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();
@@ -143,8 +143,7 @@ void loop()
   buzzer->loop();
   gauge->loop(states->gaugeLevel);
   // ble->loop(states);
-  motor->loop();
+  // motor->loop();
   eyes->loop(states->getCurrent());
   potentiometer->loop(states);
-
 }

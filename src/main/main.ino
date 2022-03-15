@@ -54,7 +54,6 @@ void songsController()
   if (state == PoulpiState::SLEEPY)
   {
     Serial.println("SLEEPY");
-    //buzzer->playTone(greenSleevesSong, GREENSLEEVES_TEMPO);
   }
 
   if (state == PoulpiState::MEDITATION)
@@ -125,7 +124,7 @@ void setup()
   motor->setup();
   eyes->setup();
   potentiometer->setup();
-  ble->setup(); // should be after all other component setup
+  // ble->setup(); // should be after all other component setup
 
   // stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, lullaby, DEFAULT_TEMPO));
   waterButton->onClick(std::bind(&States::drinkOneGlass, states));

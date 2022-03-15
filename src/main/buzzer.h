@@ -22,6 +22,6 @@ private:
   void playSong();
   void setDurationsTimestamp(int noteDurationFactor);
   void playNote(int note);
-  int *durationsTimestamp;
+  int *durationsTimestamp = NULL;
   int currentNote;
 };

@@ -3,25 +3,36 @@
 States::States()
 {
   this->winkEye = 0;
+  this->deviceConnectedOnce = false;
+
+  // Reminders
   this->waterReminderIsActive = true;
   this->sportReminderIsActive = true;
   this->meditationReminderIsActive = true;
   this->taskReminderIsActive = true;
 
-  this->gaugeLevel = 0.0F;
+  // Water
+  this->waterGlassDrunk = 0;
   this->waterGoal = DEFAULT_WATER_GOAL_IN_ML;
   this->waterGlassSizeInMl = DEFAULT_WATER_IN_GLASS_IN_ML;
+  this->waterDrunkAmountInMl = 0;
 
   // Sport
   this->sportMusic = Music::TAKE_ON_ME;
-  this->sportExercices = new String[ITEMS_IN_LIST];
-  this->sportExercices[0] = "Définis tes propres exercices!";
-  this->sportExercicesAmount = 1;
+  this->sportExercices = new String[ITEMS_IN_LIST]{
+    "Etirement la pince debout",
+    "Etirement extension de la hanche",
+    "Etirement stretching des pectoraux"
+  };
+  this->sportExercicesAmount = 3; 
 
   // Tasks
-  this->tasks = new String[ITEMS_IN_LIST];
-  this->tasks[0] = "Définis tes propres exercices!";
-  this->tasksAmount = 1;
+  this->tasks = new String[ITEMS_IN_LIST]{
+    "Faire la vaisselle",
+    "Passer la serpillère",
+    "Nourrir le chat"
+  };
+  this->tasksAmount = 3; 
 }
 
 const PoulpiState States::getCurrent()
@@ -54,7 +65,7 @@ void States::loop()
   }
 }
 
-void States::incrementWater()
-{
-  this->gaugeLevel += 1;
+void States::drinkOneGlass() {
+  this->waterDrunkAmountInMl += this->waterGlassSizeInMl;
+  this->waterGlassDrunk += 1;
 }

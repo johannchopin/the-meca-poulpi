@@ -29,7 +29,6 @@ void Screen::onStateChange()
   colorBackground();
 
   // TODO: display the according text of the new state
-  // if (currentState == PoulpiState::SLEEPY) {
   lcd.setCursor(0, 0);
   lcd.print("Zzz  Ml du verre: ");
   lcd.setCursor(0, 1);

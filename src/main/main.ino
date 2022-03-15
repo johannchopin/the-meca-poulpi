@@ -18,7 +18,7 @@ const int POTENTIOMETER_PIN = 0;
 const int BUZZER_PIN = 4;
 const int WATER_BUTTON_PIN = 6;
 const int BUTTON_PIN = 7;
-const int GAUGE_PIN = 8;
+const int GAUGE_PIN = 9; // D8
 const int MOTOR_PIN = 10;
 const int EYES_PIN = 6;
 
@@ -125,10 +125,10 @@ void setup()
   motor->setup();
   eyes->setup();
   potentiometer->setup();
-  // ble->setup(); // should be after all other component setup
+  ble->setup(); // should be after all other component setup
 
-  stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, lullaby, DEFAULT_TEMPO));
-  waterButton->onClick(std::bind(&States::incrementWater, states));
+  // stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, lullaby, DEFAULT_TEMPO));
+  waterButton->onClick(std::bind(&States::drinkOneGlass, states));
   // waterButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
 }
 
@@ -141,7 +141,7 @@ void loop()
   waterButton->loop();
   screen->loop(states);
   buzzer->loop();
-  gauge->loop(states->gaugeLevel);
+  gauge->loop(states->waterGoal, states->waterDrunkAmountInMl);
   // ble->loop(states);
   // motor->loop();
   eyes->loop(states->getCurrent());

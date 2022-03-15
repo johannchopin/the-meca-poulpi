@@ -27,6 +27,7 @@ public:
   void loop();
 
   int winkEye;
+  bool deviceConnectedOnce;
 
   // Reminders
   bool waterReminderIsActive;
@@ -35,10 +36,11 @@ public:
   bool taskReminderIsActive;
 
   // Water
-  void incrementWater();
+  void drinkOneGlass();
   unsigned int waterGoal;
   int waterGlassSizeInMl;
-  float gaugeLevel;
+  int waterGlassDrunk;
+  int waterDrunkAmountInMl;
 
   // Sport
   int sportMusic;

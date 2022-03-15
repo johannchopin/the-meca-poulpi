@@ -11,6 +11,7 @@ void Buzzer::stopTone()
 
 void Buzzer::playTone(Song *song, int noteDurationFactor)
 {
+  Serial.println("start playing tone");
   this->song = song;
   this->setDurationsTimestamp(noteDurationFactor);
   this->isPlaying = true;

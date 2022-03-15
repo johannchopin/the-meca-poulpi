@@ -17,6 +17,7 @@ void Gauge::loop(int waterGoal, int waterDrunkAmount)
   {
     progress = 10.0;
   }
+
   if (progress != this->level)
   {
     this->level = progress;

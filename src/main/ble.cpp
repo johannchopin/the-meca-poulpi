@@ -11,16 +11,13 @@ BLEIntCharacteristic meditationReminderCharacteristic("19B10100-E8F2-537E-4f6C-D
 BLEIntCharacteristic taskReminderCharacteristic("19B10101-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
 
 BLEIntCharacteristic waterGoalCharacteristic("19B10110-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
-BLEIntCharacteristic waterGlassSizeInMlCharacteristic("19B11010-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
-// BLECharacteristic sportListCharacteristic("19B10111-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite, 1000);
 BLEIntCharacteristic sportMusicCharacteristic("19B11001-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite);
-// BLECharacteristic taskListCharacteristic("19B11000-E8F2-537E-4f6C-D104768A1214", BLERead | BLEWrite, 1000);
 
 void Ble::setup()
 {
     // Set name
-    blePeripheral.setLocalName("PoulpiA");
-    blePeripheral.setDeviceName("PoulpiA");
+    blePeripheral.setLocalName("PoulpiB");
+    blePeripheral.setDeviceName("PoulpiB");
 
     // Set the service with characteristics properly
     blePeripheral.setAdvertisedServiceUuid(poulpiService.uuid());
@@ -36,11 +33,6 @@ void Ble::setup()
 
     blePeripheral.addAttribute(waterGoalCharacteristic);
     waterGoalCharacteristic.setValue(DEFAULT_WATER_GOAL_IN_ML);
-    blePeripheral.addAttribute(waterGlassSizeInMlCharacteristic);
-    waterGlassSizeInMlCharacteristic.setValue(DEFAULT_WATER_IN_GLASS_IN_ML);
-    //   blePeripheral.addAttribute(sportListCharacteristic);
-    //   blePeripheral.addAttribute(taskListCharacteristic);
-
     blePeripheral.addAttribute(sportMusicCharacteristic);
     sportMusicCharacteristic.setValue(Music::TAKE_ON_ME);
 
@@ -74,21 +66,9 @@ void Ble::loop(States *states)
         {
             states->waterGoal = waterGoalCharacteristic.value();
         }
-        if (waterGlassSizeInMlCharacteristic.written())
-        {
-            states->waterGlassSizeInMl = waterGlassSizeInMlCharacteristic.value();
-        }
-        // if (sportListCharacteristic.written()) {
-        //     states->sportExercices = LocalUtils::split(String((char *)sportListCharacteristic.value()), CARRIAGE_RETURN);
-        //     states->sportExercicesAmount = LocalUtils::countItemsInArray(states->sportExercices);
-        // }
         if (sportMusicCharacteristic.written())
         {
             states->sportMusic = sportMusicCharacteristic.value();
         }
-        // if (taskListCharacteristic.written()) {
-        //     states->tasks = LocalUtils::split(String((char *)taskListCharacteristic.value()), CARRIAGE_RETURN);
-        //     states->tasksAmount = LocalUtils::countItemsInArray(states->tasks);
-        // }
     }
 }

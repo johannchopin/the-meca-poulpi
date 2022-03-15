@@ -1,5 +1,4 @@
 #include <string>
-#include "song.h"
 #include "pitches.h"
 #include "constants.h"
 #include "states.h"
@@ -36,9 +35,42 @@ Potentiometer *potentiometer;
 
 PoulpiState state;
 
-void onStateChange()
+void songsController()
 {
-  state = states->getCurrent();
+  buzzer->stopTone();
+
+  if (state == PoulpiState::SPORT)
+  {
+    Serial.println("SPORT");
+    buzzer->playTone(takeOnMe, TAKE_ON_ME_TEMPO);
+  }
+
+  if (state == PoulpiState::TASKS)
+  {
+    Serial.println("TASKS");
+    buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
+  }
+
+  if (state == PoulpiState::SLEEPY)
+  {
+    Serial.println("SLEEPY");
+  }
+
+  if (state == PoulpiState::MEDITATION)
+  {
+    Serial.println("MEDITATION");
+    buzzer->playTone(lullaby, LULLABY_TEMPO);
+  }
+
+  if (state == PoulpiState::DO_SPORT)
+  {
+    Serial.println("DO_SPORT");
+    buzzer->playTone(babyelephantwalkSong, BABYELEPHANTWALK_TEMPO);
+  }
+}
+
+void motorController()
+{
   if (state == PoulpiState::SPORT)
   {
     motor->startTentaculeAnimation();
@@ -49,11 +81,18 @@ void onStateChange()
   }
 }
 
+void onStateChange()
+{
+  motorController();
+  songsController();
+}
+
 void stateController()
 {
   bool stateHasChanged = (state != states->getCurrent());
   if (stateHasChanged)
   {
+    state = states->getCurrent();
     onStateChange();
   }
 }
@@ -85,7 +124,7 @@ void setup()
   motor->setup();
   eyes->setup();
   potentiometer->setup();
-  ble->setup(); // should be after all other component setup
+  // ble->setup(); // should be after all other component setup
 
   // stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, lullaby, DEFAULT_TEMPO));
   waterButton->onClick(std::bind(&States::drinkOneGlass, states));
@@ -94,16 +133,16 @@ void setup()
 
 void loop()
 {
+  stateController();
+
   states->loop();
   stateSwitchButton->loop();
   waterButton->loop();
   screen->loop(states);
   buzzer->loop();
   gauge->loop(states->waterGoal, states->waterDrunkAmountInMl);
-  ble->loop(states);
-  motor->loop();
+  // ble->loop(states);
+  // motor->loop();
   eyes->loop(states->getCurrent());
   potentiometer->loop(states);
-
-  stateController();
 }

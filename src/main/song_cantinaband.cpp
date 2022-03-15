@@ -1,8 +1,4 @@
-#include "../song.h"
-#include "../pitches.h"
-
-#define CANTINA_SOUND_LENGTH 64
-#define CANTINABAND_TEMPO 950
+#include "song_cantinaband.h"
 
 // Cantina band
 int *melodyCantina = new int[CANTINA_SOUND_LENGTH]{

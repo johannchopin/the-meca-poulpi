@@ -1,8 +1,4 @@
-#include "../song.h"
-#include "../pitches.h"
-
-#define BABYELEPHANTWALK_SOUND_LENGTH 68
-#define BABYELEPHANTWALK_TEMPO 1500
+#include "song_babyelephantwalk.h"
 
 // DEFAULT MELODY
 int *babyelephantwalkMelody = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
@@ -76,7 +72,7 @@ int *babyelephantwalkMelody = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
     REST,
 };
 int *babyelephantwalkDurations = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
-    -8,
+    8,
     16,
     8,
     8,
@@ -88,7 +84,7 @@ int *babyelephantwalkDurations = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
     8,
     4,
     2,
-    -8,
+    8,
     16,
     8,
     8,
@@ -96,7 +92,7 @@ int *babyelephantwalkDurations = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
     8,
     8,
     8,
-    -2,
+    2,
     8,
     1,
     8,
@@ -104,7 +100,7 @@ int *babyelephantwalkDurations = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
     8,
     4,
     2,
-    -8,
+    8,
     16,
     8,
     8,

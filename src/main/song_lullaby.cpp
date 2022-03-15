@@ -1,4 +1,4 @@
-#include "lullaby.h"
+#include "song_lullaby.h"
 
 // BRAM'S LULLABY
 int *lullabyMelody = new int[LULLABY_SOUND_LENGTH]{
@@ -59,15 +59,15 @@ int *lullabyMelody = new int[LULLABY_SOUND_LENGTH]{
 int *lullabyDuration = new int[LULLABY_SOUND_LENGTH]{
     4,
     4,
-    -4,
+    4,
+    8,
+    4,
+    4,
+    4,
+    8,
     8,
     4,
     4,
-    4,
-    8,
-    8,
-    4,
-    -4,
     8,
     4,
     4,

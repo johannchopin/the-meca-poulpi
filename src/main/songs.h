@@ -3,13 +3,7 @@
 #include "song.h"
 #include "pitches.h"
 
-#include "lullaby.h"
-
-/*
-#include "songs/defaulttone.h"
-#include "songs/takeonme.h"
-#include "songs/cantinaband.h"
-#include "songs/greensleeves.h"
-#include "songs/babyelephantwalk.h"
-#include "songs/miichannel.h"
-*/
+#include "song_lullaby.h"
+#include "song_takeonme.h"
+#include "song_cantinaband.h"
+#include "song_babyelephantwalk.h"

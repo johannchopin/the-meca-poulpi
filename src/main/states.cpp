@@ -1,6 +1,7 @@
 #include "states.h"
 
-States::States() {
+States::States()
+{
   this->winkEye = 0;
   this->deviceConnectedOnce = false;
 
@@ -46,7 +47,7 @@ void States::setState(PoulpiState state)
 
 int States::getStatesAmount()
 {
-  return sizeof(states) / sizeof(states[0]);
+  return STATE_AMOUNT;
 }
 
 void States::goToNext()

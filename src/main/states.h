@@ -44,11 +44,11 @@ public:
 
   // Sport
   int sportMusic;
-  String* sportExercices; // should be enough
+  String *sportExercices;   // should be enough
   int sportExercicesAmount; // real amount of exercies in sportExercices
 
   // Tasks
-  String* tasks; // should be enough
+  String *tasks;   // should be enough
   int tasksAmount; // real amount of task in tasks
 
 private:

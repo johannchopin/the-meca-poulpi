@@ -47,19 +47,19 @@ void Ble::loop(States *states)
         states->deviceConnectedOnce = true;
         if (waterReminderCharacteristic.written())
         {
-            // TODO
+           states->waterReminderIsActive = waterReminderCharacteristic.value() == Switch::ON;
         }
         if (sportReminderCharacteristic.written())
         {
-            // TODO
+            states->sportReminderIsActive = sportReminderCharacteristic.value() == Switch::ON;
         }
         if (meditationReminderCharacteristic.written())
         {
-            // TODO
+            states->meditationReminderIsActive = meditationReminderCharacteristic.value() == Switch::ON;
         }
         if (taskReminderCharacteristic.written())
         {
-            // TODO
+            states->taskReminderIsActive = taskReminderCharacteristic.value() == Switch::ON;
         }
 
         if (waterGoalCharacteristic.written())

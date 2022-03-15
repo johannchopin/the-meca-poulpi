@@ -64,8 +64,3 @@ void States::loop()
     lastStateChangeDebounceTime = millis();
   }
 }
-
-void States::drinkOneGlass() {
-  this->waterDrunkAmountInMl += this->waterGlassSizeInMl;
-  this->waterGlassDrunk += 1;
-}

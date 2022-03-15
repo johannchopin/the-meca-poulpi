@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <functional>
 #include "button.h"
+#include "states.h"
 
 class WaterButton : public Button
 {
@@ -12,4 +13,6 @@ public:
   }
   int ledPin;
   void setup();
+
+  void drinkOneGlass(States* states);
 };

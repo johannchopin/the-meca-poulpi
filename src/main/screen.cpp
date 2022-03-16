@@ -2,21 +2,22 @@
 
 Screen::Screen()
 {
-    this->lcd = new rgb_lcd();
+  this->lcd = new rgb_lcd();
 }
 
 void Screen::setup(States *states)
 {
   this->lcd->begin(16, 2);
 
-  // init default displayStrings
+  // init default displayStrings. *May* contain a value for a state.
   this->displayStrings = new String[STATE_AMOUNT];
-  this->displayStrings[PoulpiState::SLEEPY] = "ZzzzzzZ"; // dynamic case handled in the onStateChange
   this->displayStrings[PoulpiState::TASK_REMINDER] = this->getRandomDescriptions(states->tasks, states->tasksAmount);
-  this->displayStrings[PoulpiState::WATER_REMINDER] = "Le moment de boire de l'eau";
+  this->displayStrings[PoulpiState::WATER_REMINDER] = "Boire de l'eau";
   this->displayStrings[PoulpiState::DOING_SPORT] = this->getRandomDescriptions(states->sportExercices, states->sportExercicesAmount);
-  this->displayStrings[PoulpiState::SPORT_REMINDER] = "Le moment de faire du sport";
-  this->displayStrings[PoulpiState::MEDITATION_REMINDER] = "Le moment de meditation";
+  this->displayStrings[PoulpiState::SPORT_REMINDER] = "Faire du sport !!!";
+  this->displayStrings[PoulpiState::MEDITATION_REMINDER] = "Meditation ^_^";
+  this->displayStrings[PoulpiState::DOING_MEDITATION] = "Relaxxxxxxxxxxxx";
+  this->displayStrings[PoulpiState::DRINKING_WATER] = "Un verre bu     Poulpi -> ^_^";
 
   updateLocalStateFromStates(states);
   onStateChange();
@@ -38,17 +39,20 @@ void Screen::onStateChange()
   colorBackground();
 
   this->lcd->setCursor(0, 0);
-  if(currentState == PoulpiState::SLEEPY) {
-    lcd->print("Zzz  Ml du verre: ");
+  if (currentState == PoulpiState::SLEEPY)
+  {
+    lcd->print("Zzz  Ml du verre");
     lcd->setCursor(0, 1);
     lcd->print("Zzz");
     int startCol = (waterGlassSizeInMlDisplayed == 0) ? 12 : (waterGlassSizeInMlDisplayed < 100) ? 11
-                                                        : (waterGlassSizeInMlDisplayed < 1000)  ? 10
-                                                                                                : 9;
+                                                         : (waterGlassSizeInMlDisplayed < 1000)  ? 10
+                                                                                                 : 9;
     lcd->setCursor(startCol, 1);
     lcd->print(waterGlassSizeInMlDisplayed);
     lcd->print(" ml");
-  } else {
+  }
+  else
+  {
     this->displayMessage(this->displayStrings[this->currentState]);
   }
 }
@@ -93,7 +97,7 @@ void Screen::colorBackground()
   this->lcd->setRGB(colorR, colorG, colorB);
 }
 
-String Screen::getRandomDescriptions(String* descriptions, int size)
+String Screen::getRandomDescriptions(String *descriptions, int size)
 {
   int randomIndex = random(size);
   return descriptions[randomIndex];
@@ -104,7 +108,9 @@ void Screen::displayMessage(String message)
   if (message.length() <= 16)
   {
     this->lcd->print(message);
-  } else {
+  }
+  else
+  {
     String firstPart = message.substring(0, 16);
     String secondPart = message.substring(16, message.length());
 

@@ -11,7 +11,9 @@ const int MIN_WATER_LEVEL = 0;
 const int WATER_LEVEL_STEP_AMOUNT = 40;
 const int WATER_AMOUNT_PER_STEP_IN_ML = 25;
 
-typedef enum {
+typedef enum
+{
+  SLEEPY,
   MEDITATION_REMINDER,
   DOING_MEDITATION,
   SPORT_REMINDER,
@@ -19,10 +21,10 @@ typedef enum {
   DRINKING_WATER,
   WATER_REMINDER,
   TASK_REMINDER,
-  SLEEPY,
 } PoulpiState;
 
-typedef enum {
+typedef enum
+{
   TAKE_ON_ME,
   BABY_ELEPHANT_WALK,
   BRAHAMS_LULLABY,
@@ -31,7 +33,8 @@ typedef enum {
   MII_CHANNEL_MUSIC
 } Music;
 
-typedef enum {
+typedef enum
+{
   OFF = 0,
   ON = 1,
 } Switch;

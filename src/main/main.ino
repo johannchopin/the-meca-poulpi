@@ -5,6 +5,7 @@
 #include "button.h"
 #include "screen.h"
 #include "waterbutton.h"
+#include "secondarybutton.h"
 #include "buzzer.h"
 #include "gauge.h"
 #include "ble.h"
@@ -84,7 +85,7 @@ void motorController()
 void onStateChange()
 {
   motorController();
-  songsController();
+  // songsController();
 }
 
 void stateController()
@@ -126,7 +127,7 @@ void setup()
   potentiometer->setup();
   // ble->setup(); // should be after all other component setup
 
-  // stateSwitchButton->onClick(std::bind(&Buzzer::playTone, buzzer, lullaby, DEFAULT_TEMPO));
+  stateSwitchButton->onClick(std::bind(&SecondaryButton::declineReminderState, SecondaryButton(), states));
   waterButton->onClick(std::bind(&WaterButton::drinkOneGlass, waterButton, states));
   // waterButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
 }

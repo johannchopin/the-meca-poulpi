@@ -20,19 +20,17 @@ States::States()
   // Sport
   this->sportMusic = Music::TAKE_ON_ME;
   this->sportExercices = new String[ITEMS_IN_LIST]{
-    "Etirement la pince debout",
-    "Etirement extension de la hanche",
-    "Etirement stretching des pectoraux"
-  };
-  this->sportExercicesAmount = 3; 
+      "Etirement la pince debout",
+      "Etirement extension de la hanche",
+      "Etirement stretching des pectoraux"};
+  this->sportExercicesAmount = 3;
 
   // Tasks
   this->tasks = new String[ITEMS_IN_LIST]{
-    "Faire la vaisselle",
-    "Passer la serpillère",
-    "Nourrir le chat"
-  };
-  this->tasksAmount = 3; 
+      "Faire la vaisselle",
+      "Passer la serpillère",
+      "Nourrir le chat"};
+  this->tasksAmount = 3;
 }
 
 const PoulpiState States::getCurrent()

@@ -25,8 +25,8 @@ Rename the zip to "Servo.zip" before importing in Arduino IDE
 
 ## Last Sprint
 
-* [ ] Potentiomètre (inverser les valeurs)
-* [ ] Ajuster screen avec les dernières features
+* [x] Potentiomètre (inverser les valeurs)
+* [x] Ajuster screen avec les dernières features
 * [ ] (dans un état de rappel) 
     * [ ] Primary Button - > accepte l'activité
     * [ ] garde  cet état pour 10 secondres puis retourne au state SLEEPY
@@ -36,5 +36,4 @@ Rename the zip to "Servo.zip" before importing in Arduino IDE
     * [ ] SPORT_REMINDER
     * [ ] WATER_REMINDER
     * [ ] TASK_REMINDER
-* [ ] Moteur pour la patte motorisée doit s'activer au bon moment
 * [ ] Moteur pour la patte motorisée doit s'activer au bon moment

@@ -11,14 +11,14 @@ public:
   States();
 
   const PoulpiState states[STATE_AMOUNT] = {
-    SLEEPY,
-    MEDITATION_REMINDER,
-    DOING_MEDITATION,
-    SPORT_REMINDER,
-    DOING_SPORT,
-    WATER_REMINDER,
-    DRINKING_WATER,
-    TASK_REMINDER,
+      SLEEPY,
+      MEDITATION_REMINDER,
+      DOING_MEDITATION,
+      SPORT_REMINDER,
+      DOING_SPORT,
+      DRINKING_WATER,
+      WATER_REMINDER,
+      TASK_REMINDER,
   };
 
   const PoulpiState getCurrent();
@@ -55,5 +55,5 @@ public:
 private:
   PoulpiState current = PoulpiState::SLEEPY;
   unsigned long lastStateChangeDebounceTime = 0;
-  unsigned long debounceStateChangeDelay = 300000; // in ms
+  unsigned long debounceStateChangeDelay = 10000; // in ms
 };

@@ -17,9 +17,9 @@
 
 const int POTENTIOMETER_PIN = 0;
 const int BUZZER_PIN = 4;
-const int WATER_BUTTON_PIN = 6;
-const int BUTTON_PIN = 7;
-const int GAUGE_PIN = 9; // D8
+const int WATER_BUTTON_PIN = 3; // D2
+const int BUTTON_PIN = 8;
+const int GAUGE_PIN = 5; // D4
 const int MOTOR_PIN = 10;
 const int EYES_PIN = 6;
 

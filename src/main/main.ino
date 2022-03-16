@@ -133,7 +133,6 @@ void setup()
 
 void loop()
 {
-  Serial.println("loop");
   stateController();
 
   states->loop();

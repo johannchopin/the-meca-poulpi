@@ -24,7 +24,7 @@ void Screen::setup(States *states)
 
 void Screen::loop(States *states)
 {
-  bool stateHasChanged = (currentState != states->getCurrent() || (states->getCurrent() == PoulpiState::SLEEPY && waterGlassSizeInMlDisplayed != states->waterGlassSizeInMl);
+  bool stateHasChanged = (currentState != states->getCurrent() || (states->getCurrent() == PoulpiState::SLEEPY && waterGlassSizeInMlDisplayed != states->waterGlassSizeInMl));
   if (stateHasChanged)
   {
     updateLocalStateFromStates(states);

@@ -55,5 +55,5 @@ public:
 private:
   PoulpiState current = PoulpiState::SLEEPY;
   unsigned long lastStateChangeDebounceTime = 0;
-  unsigned long debounceStateChangeDelay = 3000; // in ms
+  unsigned long debounceStateChangeDelay = 300000; // in ms
 };

@@ -12,10 +12,10 @@ void Screen::setup(States *states)
   // init default displayStrings. *May* contain a value for a state.
   this->displayStrings = new String[STATE_AMOUNT];
   this->displayStrings[PoulpiState::TASK_REMINDER] = this->getRandomDescriptions(states->tasks, states->tasksAmount);
-  this->displayStrings[PoulpiState::WATER_REMINDER] = "Boire de l'eau";
-  this->displayStrings[PoulpiState::DOING_SPORT] = this->getRandomDescriptions(states->sportExercices, states->sportExercicesAmount);
   this->displayStrings[PoulpiState::SPORT_REMINDER] = "Faire du sport !!!";
-  this->displayStrings[PoulpiState::MEDITATION_REMINDER] = "Meditation ^_^";
+  this->displayStrings[PoulpiState::WATER_REMINDER] = "Boire de l'eau";
+  this->displayStrings[PoulpiState::MEDITATION_REMINDER] = "Meditation Time !";
+  this->displayStrings[PoulpiState::DOING_SPORT] = this->getRandomDescriptions(states->sportExercices, states->sportExercicesAmount);
   this->displayStrings[PoulpiState::DOING_MEDITATION] = "Relaxxxxxxxxxxxx";
   this->displayStrings[PoulpiState::DRINKING_WATER] = "Un verre bu     Poulpi -> ^_^";
 

@@ -4,7 +4,7 @@
 #include "states.h"
 #include "button.h"
 #include "screen.h"
-#include "waterbutton.h"
+#include "bluebutton.h"
 #include "secondarybutton.h"
 #include "buzzer.h"
 #include "gauge.h"
@@ -27,7 +27,7 @@ Ble *ble;
 States *states;
 Button *stateSwitchButton;
 Screen *screen;
-WaterButton *waterButton;
+BlueButton *blueButton;
 Buzzer *buzzer;
 Gauge *gauge;
 Servomotor *motor;
@@ -106,7 +106,7 @@ void setup()
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
   screen = new Screen();
-  waterButton = new WaterButton(WATER_BUTTON_PIN, WATER_BUTTON_PIN - 1);
+  blueButton = new BlueButton(WATER_BUTTON_PIN, WATER_BUTTON_PIN - 1);
   buzzer = new Buzzer(BUZZER_PIN);
   gauge = new Gauge(GAUGE_PIN);
   motor = new Servomotor(MOTOR_PIN);
@@ -118,7 +118,7 @@ void setup()
   state = states->getCurrent();
 
   stateSwitchButton->setup();
-  waterButton->setup();
+  blueButton->setup();
   screen->setup(states);
   buzzer->setup();
   gauge->setup();
@@ -128,8 +128,8 @@ void setup()
   // ble->setup(); // should be after all other component setup
 
   stateSwitchButton->onClick(std::bind(&SecondaryButton::declineReminderState, SecondaryButton(), states));
-  waterButton->onClick(std::bind(&WaterButton::drinkOneGlass, waterButton, states));
-  // waterButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
+  blueButton->onClick(std::bind(&BlueButton::onClickHandler, blueButton, states));
+  // blueButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
 }
 
 void loop()
@@ -138,7 +138,7 @@ void loop()
 
   states->loop();
   stateSwitchButton->loop();
-  waterButton->loop();
+  blueButton->loop();
   screen->loop(states);
   buzzer->loop();
   gauge->loop(states->waterGoal, states->waterDrunkAmountInMl);

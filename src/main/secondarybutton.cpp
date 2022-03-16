@@ -6,6 +6,6 @@ void SecondaryButton::declineReminderState(States *states)
 
     if (currentState == PoulpiState::MEDITATION_REMINDER || currentState == PoulpiState::TASK_REMINDER || currentState == PoulpiState::SPORT_REMINDER || currentState == PoulpiState::WATER_REMINDER)
     {
-        states->setState(PoulpiState::SLEEPY);
+        states->setCurrent(PoulpiState::SLEEPY);
     }
 }

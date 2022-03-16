@@ -22,9 +22,9 @@ public:
   };
 
   const PoulpiState getCurrent();
+  void setCurrent(PoulpiState const state);
   void goToNext();
   int getStatesAmount();
-  void setState(PoulpiState const state);
   void loop();
 
   int winkEye;

@@ -38,7 +38,7 @@ const PoulpiState States::getCurrent()
   return states[current];
 }
 
-void States::setState(PoulpiState state)
+void States::setCurrent(PoulpiState state)
 {
   current = state;
 }

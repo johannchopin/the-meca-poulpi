@@ -113,7 +113,7 @@ void setup()
   eyes = new Eyes(EYES_PIN);
   potentiometer = new Potentiometer(POTENTIOMETER_PIN);
 
-  states->setState(PoulpiState::SLEEPY);
+  states->setCurrent(PoulpiState::SLEEPY);
 
   state = states->getCurrent();
 

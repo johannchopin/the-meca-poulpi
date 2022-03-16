@@ -1,6 +1,6 @@
 #include "eyes.h"
 
-#define EYES_AMOUNT 2
+#define EYES_AMOUNT 3
 #define MEDITATION_OPACITY_STEP 0.005
 
 void Eyes::handleMeditationAnimation()

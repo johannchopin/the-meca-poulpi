@@ -125,7 +125,7 @@ void setup()
   motor->setup();
   eyes->setup();
   potentiometer->setup();
-  // ble->setup(); // should be after all other component setup
+  ble->setup(); // should be after all other component setup
 
   stateSwitchButton->onClick(std::bind(&SecondaryButton::declineReminderState, SecondaryButton(), states));
   blueButton->onClick(std::bind(&BlueButton::onClickHandler, blueButton, states));
@@ -134,7 +134,6 @@ void setup()
 
 void loop()
 {
-
   stateController();
 
   states->loop();
@@ -143,7 +142,7 @@ void loop()
   screen->loop(states);
   buzzer->loop();
   gauge->loop(states->waterGoal, states->waterDrunkAmountInMl);
-  // ble->loop(states);
+  ble->loop(states);
   // motor->loop();
   eyes->loop(states->getCurrent());
   potentiometer->loop(states);

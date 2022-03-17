@@ -24,10 +24,12 @@ void Servomotor::toggleTentacule()
 
   if (this->position == this->POSITION_DOWN)
   {
+    Serial.println("servo_motor UP");
     deg = this->POSITION_UP;
   }
   else
   {
+    Serial.println("servo_motor DOWN");
     deg = this->POSITION_DOWN;
   }
 

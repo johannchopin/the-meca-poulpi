@@ -35,6 +35,8 @@ void BlueButton::onClickHandler(States *states)
   {
     drinkOneGlass(states);
   }
+
+  states->resetTimer();
 }
 
 void BlueButton::drinkOneGlass(States *states)

@@ -67,7 +67,7 @@ void States::loop()
     bool leftWelcomeState = (millis() - lastStateChangeDebounceTime) > debounceStateWelcomeChangeDelay;
     if (leftWelcomeState)
     {
-      goToNextReminder();
+      setCurrent(PoulpiState::SLEEPY);
       resetTimer();
     }
   }

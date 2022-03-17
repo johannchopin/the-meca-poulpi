@@ -75,13 +75,13 @@ void Screen::colorBackground()
     colorB = 219;
     colorG = 79;
   }
-  else if (currentState == PoulpiState::SPORT_REMINDER || currentState == PoulpiState::SPORT_REMINDER)
+  else if (currentState == PoulpiState::SPORT_REMINDER || currentState == PoulpiState::DOING_SPORT)
   {
     colorR = 253;
     colorB = 229;
     colorG = 39;
   }
-  else if (currentState == PoulpiState::WATER_REMINDER)
+  else if (currentState == PoulpiState::WATER_REMINDER || currentState == PoulpiState::DRINKING_WATER)
   {
     colorR = 94;
     colorB = 173;

@@ -108,6 +108,7 @@ void stateController()
 void setup()
 {
   Serial.begin(9600);
+  delay(6000);
   ble = new Ble();
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
@@ -136,6 +137,9 @@ void setup()
   stateSwitchButton->onClick(std::bind(&SecondaryButton::declineReminderState, SecondaryButton(), states));
   blueButton->onClick(std::bind(&BlueButton::onClickHandler, blueButton, states));
   // blueButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
+
+  // trigger first state update
+  onStateChange();
 }
 
 void loop()

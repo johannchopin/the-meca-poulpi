@@ -11,6 +11,7 @@ void Screen::setup(States *states)
 
   // init default displayStrings. *May* contain a value for a state.
   this->displayStrings = new String[STATE_AMOUNT];
+  this->displayStrings[PoulpiState::WELCOME] = "Hello je m'appelPoulpi ^-^";
   this->displayStrings[PoulpiState::TASK_REMINDER] = this->getRandomDescriptions(states->tasks, states->tasksAmount);
   this->displayStrings[PoulpiState::SPORT_REMINDER] = "Faire du sport !";
   this->displayStrings[PoulpiState::MEDITATION_REMINDER] = "Meditation Time !";
@@ -85,6 +86,12 @@ void Screen::colorBackground()
     colorR = 19;
     colorB = 219;
     colorG = 79;
+  }
+  else if (currentState == PoulpiState::WELCOME)
+  {
+    colorR = 246;
+    colorB = 0;
+    colorG = 135;
   }
   else if (currentState == PoulpiState::SPORT_REMINDER || currentState == PoulpiState::DOING_SPORT)
   {

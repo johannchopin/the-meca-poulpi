@@ -68,6 +68,12 @@ void Eyes::onStateChange()
     colorB = 219;
     colorG = 79;
   }
+  else if (currentState == PoulpiState::WELCOME)
+  {
+    colorR = 246;
+    colorB = 0;
+    colorG = 135;
+  }
   else if (currentState == PoulpiState::DOING_SPORT || currentState == PoulpiState::SPORT_REMINDER)
   {
     colorR = 253;

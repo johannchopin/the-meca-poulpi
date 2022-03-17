@@ -61,6 +61,17 @@ void States::goToNextReminder()
 
 void States::loop()
 {
+  if (current == PoulpiState::WELCOME)
+  {
+    bool leftWelcomeState = (millis() - lastStateChangeDebounceTime) > debounceStateWelcomeChangeDelay;
+    if (leftWelcomeState)
+    {
+      goToNext();
+      resetTimer();
+    }
+  }
+  else
+  {
   bool shouldStateGoNext = !isAwaitingUserFeedback() && (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
 
   // custom behavior for driking water where the poulpi is happy for a certain amount of seconds before going to sleep again

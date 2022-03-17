@@ -41,6 +41,10 @@ void songsController()
 {
   buzzer->stopTone();
 
+  if (state == PoulpiState::WELCOME)
+  {
+    Serial.println("WELCOME");
+  }
   if (state == PoulpiState::SPORT_REMINDER)
   {
     Serial.println("SPORT");
@@ -73,7 +77,8 @@ void songsController()
 
 void motorController()
 {
-  if (state == PoulpiState::DOING_SPORT)
+  bool animate = state == PoulpiState::SPORT_REMINDER || state == PoulpiState::WELCOME;
+  if (animate)
   {
     motor->startTentaculeAnimation();
   }
@@ -85,8 +90,9 @@ void motorController()
 
 void onStateChange()
 {
+  Serial.println("state change");
   motorController();
-  // songsController();
+  songsController();
 }
 
 void stateController()
@@ -102,6 +108,7 @@ void stateController()
 void setup()
 {
   Serial.begin(9600);
+  delay(6000);
   ble = new Ble();
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
@@ -113,7 +120,7 @@ void setup()
   eyes = new Eyes(EYES_PIN);
   potentiometer = new Potentiometer(POTENTIOMETER_PIN);
 
-  states->setCurrent(PoulpiState::SLEEPY);
+  states->setCurrent(PoulpiState::WELCOME);
 
   state = states->getCurrent();
 
@@ -130,6 +137,9 @@ void setup()
   stateSwitchButton->onClick(std::bind(&SecondaryButton::declineReminderState, SecondaryButton(), states));
   blueButton->onClick(std::bind(&BlueButton::onClickHandler, blueButton, states));
   // blueButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
+
+  // trigger first state update
+  onStateChange();
 }
 
 void loop()
@@ -143,7 +153,7 @@ void loop()
   buzzer->loop();
   gauge->loop(states->waterGoal, states->waterDrunkAmountInMl);
   ble->loop(states);
-  // motor->loop();
+  motor->loop();
   eyes->loop(states->getCurrent());
   potentiometer->loop(states);
 }

@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "constants.h"
 
-const int STATE_AMOUNT = 8;
+const int STATE_AMOUNT = 9;
 const int REMINDER_AMOUNT = 4;
 
 class States
@@ -16,6 +16,7 @@ public:
       SPORT_REMINDER,
       WATER_REMINDER,
       TASK_REMINDER,
+      WELCOME,
       SLEEPY,
       DOING_MEDITATION,
       DOING_SPORT,
@@ -57,6 +58,7 @@ public:
 
 private:
   PoulpiState current = PoulpiState::SLEEPY;
-  unsigned long lastStateChangeDebounceTime = 0;
+  unsigned long lastStateChangeDebounceTime = millis();
   unsigned long debounceStateChangeDelay = 10000; // in ms
+  unsigned long debounceStateWelcomeChangeDelay = 20000;
 };

@@ -60,11 +60,23 @@ void States::goToNext()
 
 void States::loop()
 {
-  bool shouldStateGoNext = (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
-  if (shouldStateGoNext)
+  if (current == PoulpiState::WELCOME)
   {
-    goToNext();
-    lastStateChangeDebounceTime = millis();
+    bool leftWelcomeState = (millis() - lastStateChangeDebounceTime) > debounceStateWelcomeChangeDelay;
+    if (leftWelcomeState)
+    {
+      goToNext();
+      resetTimer();
+    }
+  }
+  else
+  {
+    bool shouldStateGoNext = (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
+    if (shouldStateGoNext)
+    {
+      goToNext();
+      resetTimer();
+    }
   }
 }
 

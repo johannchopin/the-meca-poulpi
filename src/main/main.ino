@@ -41,6 +41,10 @@ void songsController()
 {
   buzzer->stopTone();
 
+  if (state == PoulpiState::WELCOME)
+  {
+    Serial.println("WELCOME");
+  }
   if (state == PoulpiState::SPORT_REMINDER)
   {
     Serial.println("SPORT");
@@ -73,7 +77,8 @@ void songsController()
 
 void motorController()
 {
-  if (state == PoulpiState::DOING_SPORT)
+  bool animate = state == PoulpiState::SPORT_REMINDER || state == PoulpiState::WELCOME;
+  if (animate)
   {
     motor->startTentaculeAnimation();
   }
@@ -113,7 +118,7 @@ void setup()
   eyes = new Eyes(EYES_PIN);
   potentiometer = new Potentiometer(POTENTIOMETER_PIN);
 
-  states->setCurrent(PoulpiState::SLEEPY);
+  states->setCurrent(PoulpiState::WELCOME);
 
   state = states->getCurrent();
 

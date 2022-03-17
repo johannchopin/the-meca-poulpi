@@ -102,7 +102,6 @@ void stateController()
 void setup()
 {
   Serial.begin(9600);
-  delay(3000);
   ble = new Ble();
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);

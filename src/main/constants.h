@@ -34,13 +34,8 @@ typedef enum
   MII_CHANNEL_MUSIC
 } Music;
 
-/*
-typedef enum {
-  OFF = 0,
-  ON = 1
-} Switch;*/
-
-typedef enum {
+typedef enum
+{
   WATER_REMINDER_ON = 'A',
   WATER_REMINDER_OFF = 'a',
   SPORT_REMINDER_ON = 'B',
@@ -49,4 +44,4 @@ typedef enum {
   MEDITATION_REMINDER_OFF = 'c',
   TASK_REMINDER_ON = 'D',
   TASK_REMINDER_OFF = 'd'
-} Switch;
+} SwitchReminders;

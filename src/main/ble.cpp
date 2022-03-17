@@ -31,7 +31,7 @@ void Ble::setup()
     blePeripheral.setAdvertisedServiceUuid(poulpiService.uuid());
     blePeripheral.addAttribute(poulpiService);
     blePeripheral.addAttribute(switchReminderCharacteristic);
-    switchReminderCharacteristic.setValue(Switch::WATER_REMINDER_ON);
+    switchReminderCharacteristic.setValue(SwitchReminders::WATER_REMINDER_ON);
     blePeripheral.addAttribute(waterGoalCharacteristic);
     waterGoalCharacteristic.setValue(DEFAULT_WATER_GOAL_IN_ML);
     blePeripheral.addAttribute(sportMusicCharacteristic);
@@ -57,7 +57,23 @@ void Ble::loop(States *states)
 
         if (switchReminderCharacteristic.written())
         {
-            // TODO: update the proper reminder
+            SwitchReminders value = (SwitchReminders)switchReminderCharacteristic.value();
+            if (value == SwitchReminders::MEDITATION_REMINDER_OFF || value == SwitchReminders::MEDITATION_REMINDER_ON)
+            {
+                states->waterReminderIsActive = value == SwitchReminders::MEDITATION_REMINDER_ON;
+            }
+            if (value == SwitchReminders::WATER_REMINDER_OFF || value == SwitchReminders::WATER_REMINDER_ON)
+            {
+                states->waterReminderIsActive = value == SwitchReminders::WATER_REMINDER_ON;
+            }
+            if (value == SwitchReminders::TASK_REMINDER_OFF || value == SwitchReminders::TASK_REMINDER_ON)
+            {
+                states->waterReminderIsActive = value == SwitchReminders::TASK_REMINDER_ON;
+            }
+            if (value == SwitchReminders::SPORT_REMINDER_OFF || value == SwitchReminders::SPORT_REMINDER_ON)
+            {
+                states->waterReminderIsActive = value == SwitchReminders::SPORT_REMINDER_ON;
+            }
         }
         if (waterGoalCharacteristic.written())
         {

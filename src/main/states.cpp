@@ -55,6 +55,18 @@ int States::getRemindersAmount()
 
 void States::goToNextReminder()
 {
+  // bool candidateFound = false;
+  // int candidate;
+  // for (int i = 1; i < getRemindersAmount() + 1; i++)
+  // {
+  //   candidate = (PoulpiState)((lastReminderState + i) % getRemindersAmount());
+  //   if (isReminderActive[i % getRemindersAmount()])
+  //   {
+  //     candidateFound = true;
+  //     break;
+  //   }
+  // }
+  // current = candidateFound ? (PoulpiState)candidate : PoulpiState::SLEEPY;
   current = (PoulpiState)((lastReminderState + 1) % getRemindersAmount());
   lastReminderState = current;
 }

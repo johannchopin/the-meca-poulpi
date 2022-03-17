@@ -25,6 +25,7 @@ public:
   const PoulpiState getCurrent();
   void setCurrent(PoulpiState const state);
   void goToNext();
+  void resetTimer();
   int getStatesAmount();
   int getRemindersAmount();
   void loop();

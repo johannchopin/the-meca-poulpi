@@ -67,3 +67,8 @@ void States::loop()
     lastStateChangeDebounceTime = millis();
   }
 }
+
+void States::resetTimer()
+{
+  lastStateChangeDebounceTime = millis();
+}

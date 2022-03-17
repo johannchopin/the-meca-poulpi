@@ -23,6 +23,13 @@ public:
       DRINKING_WATER,
   };
 
+  // index are the values of the REMINDER states in the enum
+  bool isReminderActive[REMINDER_AMOUNT] = {
+      true,
+      true,
+      true,
+      true};
+
   const PoulpiState getCurrent();
   void setCurrent(PoulpiState const state);
   void goToNextReminder();

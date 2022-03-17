@@ -49,19 +49,19 @@ void Ble::loop(States *states)
             SwitchReminders value = (SwitchReminders)switchReminderCharacteristic.value();
             if (value == SwitchReminders::MEDITATION_REMINDER_OFF || value == SwitchReminders::MEDITATION_REMINDER_ON)
             {
-                states->waterReminderIsActive = value == SwitchReminders::MEDITATION_REMINDER_ON;
+                states->isReminderActive[PoulpiState::MEDITATION_REMINDER] = value == SwitchReminders::MEDITATION_REMINDER_ON;
             }
             if (value == SwitchReminders::WATER_REMINDER_OFF || value == SwitchReminders::WATER_REMINDER_ON)
             {
-                states->waterReminderIsActive = value == SwitchReminders::WATER_REMINDER_ON;
+                states->isReminderActive[PoulpiState::WATER_REMINDER] = value == SwitchReminders::WATER_REMINDER_ON;
             }
             if (value == SwitchReminders::TASK_REMINDER_OFF || value == SwitchReminders::TASK_REMINDER_ON)
             {
-                states->waterReminderIsActive = value == SwitchReminders::TASK_REMINDER_ON;
+                states->isReminderActive[PoulpiState::TASK_REMINDER] = value == SwitchReminders::TASK_REMINDER_ON;
             }
             if (value == SwitchReminders::SPORT_REMINDER_OFF || value == SwitchReminders::SPORT_REMINDER_ON)
             {
-                states->waterReminderIsActive = value == SwitchReminders::SPORT_REMINDER_ON;
+                states->isReminderActive[PoulpiState::SPORT_REMINDER] = value == SwitchReminders::SPORT_REMINDER_ON;
             }
         }
         if (waterGoalCharacteristic.written())

@@ -90,8 +90,9 @@ void motorController()
 
 void onStateChange()
 {
+  Serial.println("state change");
   motorController();
-  // songsController();
+  songsController();
 }
 
 void stateController()
@@ -139,7 +140,6 @@ void setup()
 
 void loop()
 {
-
   stateController();
 
   states->loop();
@@ -149,7 +149,7 @@ void loop()
   buzzer->loop();
   gauge->loop(states->waterGoal, states->waterDrunkAmountInMl);
   // ble->loop(states);
-  // motor->loop();
+  motor->loop();
   eyes->loop(states->getCurrent());
   potentiometer->loop(states);
 }

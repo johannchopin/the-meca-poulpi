@@ -16,6 +16,7 @@ public:
   void loop(States* states);
   void setup(States* states);
   void colorBackground();
+  void displayMessage(String message);
   int pin;
  
 private:
@@ -29,5 +30,4 @@ private:
   void onStateChange();
   void updateLocalStateFromStates(States* states);
   String getRandomDescriptions(String* descriptions, int size);
-  void displayMessage(String message);
 };

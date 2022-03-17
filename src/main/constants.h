@@ -3,6 +3,7 @@
 
 #define ITEMS_IN_LIST 30
 #define CARRIAGE_RETURN "\n"
+#define DEVICE_NAME_ON_BLE "Poulpi C"
 
 const int DEFAULT_WATER_IN_GLASS_IN_ML = 200;
 const int DEFAULT_WATER_GOAL_IN_ML = 2000;

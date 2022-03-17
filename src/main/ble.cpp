@@ -13,8 +13,8 @@ BLEShortCharacteristic sportMusicCharacteristic("19B11001-E8F2-537E-4f6C-D104768
 void Ble::setup()
 {
     // Set name
-    blePeripheral.setLocalName("PoulpiB");
-    blePeripheral.setDeviceName("PoulpiB");
+    blePeripheral.setLocalName(DEVICE_NAME_ON_BLE);
+    blePeripheral.setDeviceName(DEVICE_NAME_ON_BLE);
 
     // Set the service with characteristics properly
     blePeripheral.setAdvertisedServiceUuid(poulpiService.uuid());

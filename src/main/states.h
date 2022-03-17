@@ -4,6 +4,7 @@
 #include "constants.h"
 
 const int STATE_AMOUNT = 8;
+const int REMINDER_AMOUNT = 4;
 
 class States
 {
@@ -11,20 +12,22 @@ public:
   States();
 
   const PoulpiState states[STATE_AMOUNT] = {
-      SLEEPY,
       MEDITATION_REMINDER,
-      DOING_MEDITATION,
       SPORT_REMINDER,
-      DOING_SPORT,
-      DRINKING_WATER,
       WATER_REMINDER,
       TASK_REMINDER,
+      SLEEPY,
+      DOING_MEDITATION,
+      DOING_SPORT,
+      DRINKING_WATER,
   };
 
   const PoulpiState getCurrent();
   void setCurrent(PoulpiState const state);
   void goToNext();
+  void resetTimer();
   int getStatesAmount();
+  int getRemindersAmount();
   void loop();
 
   int winkEye;

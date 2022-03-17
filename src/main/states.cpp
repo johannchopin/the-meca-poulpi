@@ -48,9 +48,14 @@ int States::getStatesAmount()
   return STATE_AMOUNT;
 }
 
+int States::getRemindersAmount()
+{
+  return REMINDER_AMOUNT;
+}
+
 void States::goToNext()
 {
-  current = (PoulpiState)((current + 1) % getStatesAmount());
+  current = (PoulpiState)((current + 1) % getRemindersAmount());
 }
 
 void States::loop()
@@ -61,4 +66,9 @@ void States::loop()
     goToNext();
     lastStateChangeDebounceTime = millis();
   }
+}
+
+void States::resetTimer()
+{
+  lastStateChangeDebounceTime = millis();
 }

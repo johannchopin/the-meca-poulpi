@@ -29,11 +29,11 @@ Rename the zip to "Servo.zip" before importing in Arduino IDE
 * [x] Ajuster screen avec les dernières features
 * [ ] (dans un état de rappel) 
     * [ ] Primary Button - > accepte l'activité
-    * [ ] garde  cet état pour 10 secondres puis retourne au state SLEEPY
-* [ ] (dans un état de rappel) -> stateSwitchButtonstateSwitchButton -> décline l'activité -> retour au state SLEEPY
+* [x] (dans un état de rappel) -> stateSwitchButtonstateSwitchButton -> décline l'activité -> retour au state SLEEPY
 * [ ] Passer dans un état de rappel après une durée X pour
     * [ ] MEDITATION_REMINDER
     * [ ] SPORT_REMINDER
     * [ ] WATER_REMINDER
     * [ ] TASK_REMINDER
+* [ ] Désactiver certains reminders lorsque leurs states "isActive" est à faux
 * [ ] Moteur pour la patte motorisée doit s'activer au bon moment

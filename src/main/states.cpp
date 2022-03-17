@@ -63,27 +63,29 @@ void States::loop()
 {
   if (current == PoulpiState::WELCOME)
   {
+    Serial.println("PoulpiState::WELCOME");
     bool leftWelcomeState = (millis() - lastStateChangeDebounceTime) > debounceStateWelcomeChangeDelay;
     if (leftWelcomeState)
     {
-      goToNext();
+      goToNextReminder();
       resetTimer();
     }
   }
   else
   {
-  bool shouldStateGoNext = !isAwaitingUserFeedback() && (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
+    bool shouldStateGoNext = !isAwaitingUserFeedback() && (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
 
-  // custom behavior for driking water where the poulpi is happy for a certain amount of seconds before going to sleep again
-  if (current == PoulpiState::DRINKING_WATER && (millis() - lastStateChangeDebounceTime) > FIVE_SECONDS)
-  {
-    setCurrent(PoulpiState::SLEEPY);
-    lastStateChangeDebounceTime = millis();
-  }
-  else if (shouldStateGoNext)
-  {
-    goToNextReminder();
-    lastStateChangeDebounceTime = millis();
+    // custom behavior for driking water where the poulpi is happy for a certain amount of seconds before going to sleep again
+    if (current == PoulpiState::DRINKING_WATER && (millis() - lastStateChangeDebounceTime) > FIVE_SECONDS)
+    {
+      setCurrent(PoulpiState::SLEEPY);
+      lastStateChangeDebounceTime = millis();
+    }
+    else if (shouldStateGoNext)
+    {
+      goToNextReminder();
+      resetTimer();
+    }
   }
 }
 

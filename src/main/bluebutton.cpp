@@ -25,7 +25,7 @@ void BlueButton::onClickHandler(States *states)
   }
   else if (state == PoulpiState::WATER_REMINDER)
   {
-    states->setCurrent(PoulpiState::DRINKING_WATER);
+    drinkOneGlass(states);
   }
   else if (state == PoulpiState::DOING_MEDITATION || state == PoulpiState::DOING_SPORT)
   {
@@ -43,4 +43,5 @@ void BlueButton::drinkOneGlass(States *states)
 {
   states->waterDrunkAmountInMl += states->waterGlassSizeInMl;
   states->waterGlassDrunk += 1;
+  states->setCurrent(PoulpiState::DRINKING_WATER);
 }

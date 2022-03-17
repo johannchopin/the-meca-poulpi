@@ -53,17 +53,25 @@ int States::getRemindersAmount()
   return REMINDER_AMOUNT;
 }
 
-void States::goToNext()
+void States::goToNextReminder()
 {
-  current = (PoulpiState)((current + 1) % getRemindersAmount());
+  current = (PoulpiState)((lastReminderState + 1) % getRemindersAmount());
+  lastReminderState = current;
 }
 
 void States::loop()
 {
-  bool shouldStateGoNext = (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
-  if (shouldStateGoNext)
+  bool shouldStateGoNext = !isAwaitingUserFeedback() && (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
+
+  // custom behavior for driking water where the poulpi is happy for a certain amount of seconds before going to sleep again
+  if (current == PoulpiState::DRINKING_WATER && (millis() - lastStateChangeDebounceTime) > FIVE_SECONDS)
   {
-    goToNext();
+    setCurrent(PoulpiState::SLEEPY);
+    lastStateChangeDebounceTime = millis();
+  }
+  else if (shouldStateGoNext)
+  {
+    goToNextReminder();
     lastStateChangeDebounceTime = millis();
   }
 }
@@ -71,4 +79,19 @@ void States::loop()
 void States::resetTimer()
 {
   lastStateChangeDebounceTime = millis();
+}
+
+boolean States::isCurrentStateAReminder()
+{
+  return current == PoulpiState::TASK_REMINDER ||
+         current == PoulpiState::SPORT_REMINDER ||
+         current == PoulpiState::WATER_REMINDER ||
+         current == PoulpiState::MEDITATION_REMINDER;
+}
+
+boolean States::isAwaitingUserFeedback()
+{
+  return isCurrentStateAReminder() ||
+         current == PoulpiState::DOING_MEDITATION ||
+         current == PoulpiState::DOING_SPORT;
 }

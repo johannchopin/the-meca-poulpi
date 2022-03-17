@@ -11,6 +11,8 @@ const int MIN_WATER_LEVEL = 0;
 const int WATER_LEVEL_STEP_AMOUNT = 40;
 const int WATER_AMOUNT_PER_STEP_IN_ML = 25;
 
+const unsigned long FIVE_SECONDS = 5 * 1000;
+
 // REMINDERS go first
 typedef enum
 {

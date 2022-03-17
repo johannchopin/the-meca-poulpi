@@ -13,7 +13,6 @@ void Screen::setup(States *states)
   this->displayStrings = new String[STATE_AMOUNT];
   this->displayStrings[PoulpiState::TASK_REMINDER] = this->getRandomDescriptions(states->tasks, states->tasksAmount);
   this->displayStrings[PoulpiState::SPORT_REMINDER] = "Faire du sport !";
-  this->displayStrings[PoulpiState::WATER_REMINDER] = "Boire de l'eau";
   this->displayStrings[PoulpiState::MEDITATION_REMINDER] = "Meditation Time !";
   this->displayStrings[PoulpiState::DOING_SPORT] = this->getRandomDescriptions(states->sportExercices, states->sportExercicesAmount);
   this->displayStrings[PoulpiState::DOING_MEDITATION] = "Relaxxxxxxxxxxxx";
@@ -25,7 +24,8 @@ void Screen::setup(States *states)
 
 void Screen::loop(States *states)
 {
-  bool stateHasChanged = (currentState != states->getCurrent() || (states->getCurrent() == PoulpiState::SLEEPY && waterGlassSizeInMlDisplayed != states->waterGlassSizeInMl));
+  bool isAStateWithWaterChange = states->getCurrent() == PoulpiState::WATER_REMINDER || states->getCurrent() == PoulpiState::SLEEPY;
+  bool stateHasChanged = (currentState != states->getCurrent() || (isAStateWithWaterChange && waterGlassSizeInMlDisplayed != states->waterGlassSizeInMl));
   if (stateHasChanged)
   {
     updateLocalStateFromStates(states);
@@ -44,6 +44,17 @@ void Screen::onStateChange()
     lcd->print("Zzz  Ml du verre");
     lcd->setCursor(0, 1);
     lcd->print("Zzz");
+    int startCol = (waterGlassSizeInMlDisplayed == 0) ? 12 : (waterGlassSizeInMlDisplayed < 100) ? 11
+                                                         : (waterGlassSizeInMlDisplayed < 1000)  ? 10
+                                                                                                 : 9;
+    lcd->setCursor(startCol, 1);
+    lcd->print(waterGlassSizeInMlDisplayed);
+    lcd->print(" ml");
+  }
+  else if (currentState == PoulpiState::WATER_REMINDER)
+  {
+    lcd->print("Boire de l'eau");
+    lcd->setCursor(0, 1);
     int startCol = (waterGlassSizeInMlDisplayed == 0) ? 12 : (waterGlassSizeInMlDisplayed < 100) ? 11
                                                          : (waterGlassSizeInMlDisplayed < 1000)  ? 10
                                                                                                  : 9;

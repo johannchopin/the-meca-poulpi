@@ -24,8 +24,10 @@ public:
 
   const PoulpiState getCurrent();
   void setCurrent(PoulpiState const state);
-  void goToNext();
+  void goToNextReminder();
   void resetTimer();
+  bool isCurrentStateAReminder();
+  bool isAwaitingUserFeedback();
   int getStatesAmount();
   int getRemindersAmount();
   void loop();
@@ -57,6 +59,7 @@ public:
 
 private:
   PoulpiState current = PoulpiState::SLEEPY;
+  PoulpiState lastReminderState = PoulpiState::SLEEPY;
   unsigned long lastStateChangeDebounceTime = 0;
-  unsigned long debounceStateChangeDelay = 10000; // in ms
+  unsigned long debounceStateChangeDelay = 3000; // in ms
 };

@@ -180,6 +180,7 @@ void setup()
 
 void loop()
 {
+  /*
   stateController();
   Serial.println("LOOP");
   Serial.println(availableMemory());
@@ -193,5 +194,5 @@ void loop()
   // ble->loop(states);
   // motor->loop();
   eyes->loop(states->getCurrent());
-  potentiometer->loop(states);
+  potentiometer->loop(states);*/
 }

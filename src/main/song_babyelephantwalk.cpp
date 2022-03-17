@@ -1,7 +1,7 @@
 #include "song_babyelephantwalk.h"
 
 // DEFAULT MELODY
-int *babyelephantwalkMelody = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
+short int *babyelephantwalkMelody = new short int[BABYELEPHANTWALK_SOUND_LENGTH]{
     NOTE_C4,
     NOTE_E4,
     NOTE_G4,
@@ -71,7 +71,7 @@ int *babyelephantwalkMelody = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
     REST,
     REST,
 };
-int *babyelephantwalkDurations = new int[BABYELEPHANTWALK_SOUND_LENGTH]{
+uint8_t *babyelephantwalkDurations = new uint8_t[BABYELEPHANTWALK_SOUND_LENGTH]{
     8,
     16,
     8,

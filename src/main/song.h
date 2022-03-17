@@ -1,12 +1,14 @@
 #pragma once
 
+#include <stdint.h>
+
 class Song
 {
 public:
-  int *melody;
-  int *durations;
+  short int *melody;
+  uint8_t *durations;
   int length;
-  Song(int *melody, int *durations, int length)
+  Song(short int *melody, uint8_t *durations, int length)
   {
     this->melody = melody;
     this->durations = durations;

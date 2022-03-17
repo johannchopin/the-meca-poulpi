@@ -1,7 +1,7 @@
 #include "song_lullaby.h"
 
 // BRAM'S LULLABY
-int *lullabyMelody = new int[LULLABY_SOUND_LENGTH]{
+short int *lullabyMelody = new short int[LULLABY_SOUND_LENGTH]{
     NOTE_G4,
     NOTE_G4,
     NOTE_AS4,
@@ -56,7 +56,7 @@ int *lullabyMelody = new int[LULLABY_SOUND_LENGTH]{
     NOTE_G4,
     NOTE_DS4,
     NOTE_DS4};
-int *lullabyDuration = new int[LULLABY_SOUND_LENGTH]{
+uint8_t *lullabyDuration = new uint8_t[LULLABY_SOUND_LENGTH]{
     4,
     4,
     4,

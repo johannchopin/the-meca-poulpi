@@ -1,7 +1,7 @@
 #include "song_takeonme.h"
 
 // TAKE ON ME
-int *takeOnMeMelody = new int[TAKE_ON_ME_SOUND_LENGTH]{
+short int *takeOnMeMelody = new short int[TAKE_ON_ME_SOUND_LENGTH]{
     NOTE_FS5,
     NOTE_FS5,
     NOTE_D5,
@@ -100,5 +100,5 @@ int *takeOnMeMelody = new int[TAKE_ON_ME_SOUND_LENGTH]{
     NOTE_FS5,
     NOTE_E5,
 };
-int *takeOnMeDuration = new int[TAKE_ON_ME_SOUND_LENGTH]{8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8};
+uint8_t *takeOnMeDuration = new uint8_t[TAKE_ON_ME_SOUND_LENGTH]{8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8};
 Song *takeOnMe = new Song(takeOnMeMelody, takeOnMeDuration, TAKE_ON_ME_SOUND_LENGTH);

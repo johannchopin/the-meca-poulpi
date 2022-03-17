@@ -1,7 +1,7 @@
 #include "song_cantinaband.h"
 
 // Cantina band
-int *melodyCantina = new int[CANTINA_SOUND_LENGTH]{
+short int *melodyCantina = new short int[CANTINA_SOUND_LENGTH]{
     NOTE_B4,
     NOTE_E5,
     NOTE_B4,
@@ -81,7 +81,7 @@ int *melodyCantina = new int[CANTINA_SOUND_LENGTH]{
     NOTE_B4,
     NOTE_G4,
 };
-int *durationsCantina = new int[CANTINA_SOUND_LENGTH]{
+uint8_t *durationsCantina = new uint8_t[CANTINA_SOUND_LENGTH]{
     4,
     4,
     4,

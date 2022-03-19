@@ -70,5 +70,5 @@ private:
   PoulpiState lastReminderState = PoulpiState::SLEEPY;
   unsigned long lastStateChangeDebounceTime = millis();
   unsigned long debounceStateChangeDelay = 3000; // in ms
-  unsigned long debounceStateWelcomeChangeDelay = 20000;
+  unsigned long debounceStateWelcomeChangeDelay = 15500; // in ms
 };

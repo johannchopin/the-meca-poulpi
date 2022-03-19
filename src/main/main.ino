@@ -17,7 +17,7 @@
 #include "songs.h"
 
 const int POTENTIOMETER_PIN = 0;
-const int BUZZER_PIN = 4;
+const int BUZZER_PIN = 11;
 const int WATER_BUTTON_PIN = 3; // D2
 const int BUTTON_PIN = 8;
 const int GAUGE_PIN = 5; // D4
@@ -44,6 +44,7 @@ void songsController()
   if (state == PoulpiState::WELCOME)
   {
     Serial.println("WELCOME");
+    buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
   }
   if (state == PoulpiState::SPORT_REMINDER)
   {
@@ -108,7 +109,7 @@ void stateController()
 void setup()
 {
   Serial.begin(9600);
-  delay(6000);
+
   ble = new Ble();
   states = new States();
   stateSwitchButton = new Button(BUTTON_PIN);
@@ -136,7 +137,6 @@ void setup()
 
   stateSwitchButton->onClick(std::bind(&SecondaryButton::declineReminderState, SecondaryButton(), states));
   blueButton->onClick(std::bind(&BlueButton::onClickHandler, blueButton, states));
-  // blueButton->onClick(std::bind(&Buzzer::playTone, buzzer, cantinaband, DEFAULT_TEMPO));
 
   // trigger first state update
   onStateChange();

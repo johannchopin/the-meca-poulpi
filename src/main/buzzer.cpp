@@ -19,7 +19,7 @@ void Buzzer::playTone(Song *song, int noteDurationFactor)
 
 void Buzzer::setup()
 {
-  pinMode(this->pin, INPUT);
+  pinMode(this->pin, OUTPUT);
 }
 
 void Buzzer::setDurationsTimestamp(int noteDurationFactor)

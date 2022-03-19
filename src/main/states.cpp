@@ -71,11 +71,30 @@ void States::goToNextReminder()
   lastReminderState = current;
 }
 
+void States::resetTimer()
+{
+  lastStateChangeDebounceTime = millis();
+}
+
+boolean States::isCurrentStateAReminder()
+{
+  return current == PoulpiState::TASK_REMINDER ||
+         current == PoulpiState::SPORT_REMINDER ||
+         current == PoulpiState::WATER_REMINDER ||
+         current == PoulpiState::MEDITATION_REMINDER;
+}
+
+boolean States::isAwaitingUserFeedback()
+{
+  return isCurrentStateAReminder() ||
+         current == PoulpiState::DOING_MEDITATION ||
+         current == PoulpiState::DOING_SPORT;
+}
+
 void States::loop()
 {
   if (current == PoulpiState::WELCOME)
   {
-    Serial.println("PoulpiState::WELCOME");
     bool leftWelcomeState = (millis() - lastStateChangeDebounceTime) > debounceStateWelcomeChangeDelay;
     if (leftWelcomeState)
     {
@@ -99,24 +118,4 @@ void States::loop()
       resetTimer();
     }
   }
-}
-
-void States::resetTimer()
-{
-  lastStateChangeDebounceTime = millis();
-}
-
-boolean States::isCurrentStateAReminder()
-{
-  return current == PoulpiState::TASK_REMINDER ||
-         current == PoulpiState::SPORT_REMINDER ||
-         current == PoulpiState::WATER_REMINDER ||
-         current == PoulpiState::MEDITATION_REMINDER;
-}
-
-boolean States::isAwaitingUserFeedback()
-{
-  return isCurrentStateAReminder() ||
-         current == PoulpiState::DOING_MEDITATION ||
-         current == PoulpiState::DOING_SPORT;
 }

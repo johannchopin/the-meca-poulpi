@@ -5,6 +5,7 @@
 #include "constants.h"
 #include "rgb_lcd.h"
 #include "states.h"
+#include "localUtils.h"
 
 //#define NB_POULPISTATES 8
 //#define NB_DESCRIPTORSPERSTATE 3

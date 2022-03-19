@@ -76,7 +76,7 @@ void States::resetTimer()
   lastStateChangeDebounceTime = millis();
 }
 
-boolean States::isCurrentStateAReminder()
+bool States::isCurrentStateAReminder()
 {
   return current == PoulpiState::TASK_REMINDER ||
          current == PoulpiState::SPORT_REMINDER ||
@@ -84,7 +84,7 @@ boolean States::isCurrentStateAReminder()
          current == PoulpiState::MEDITATION_REMINDER;
 }
 
-boolean States::isAwaitingUserFeedback()
+bool States::isAwaitingUserFeedback()
 {
   return isCurrentStateAReminder() ||
          current == PoulpiState::DOING_MEDITATION ||

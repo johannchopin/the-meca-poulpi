@@ -1,13 +1,12 @@
 #include "screen.h"
 
-Screen::Screen()
-{
-  this->lcd = new rgb_lcd();
-}
+rgb_lcd lcd;
+
+Screen::Screen() {}
 
 void Screen::setup(States *states)
 {
-  this->lcd->begin(16, 2);
+  lcd.begin(16, 2);
 
   // init default displayStrings. *May* contain a value for a state.
   this->displayStrings = new String[STATE_AMOUNT];
@@ -37,20 +36,20 @@ void Screen::loop(States *states)
 
 void Screen::onStateChange()
 {
-  lcd->clear();
+  lcd.clear();
   colorBackground();
 
-  this->lcd->setCursor(0, 0);
+  lcd.setCursor(0, 0);
   bool shouldStatePrintGlassSize = currentState == PoulpiState::SLEEPY || currentState == PoulpiState::WATER_REMINDER;
   if (currentState == PoulpiState::SLEEPY)
   {
-    lcd->print("Zzz  Ml du verre");
-    lcd->setCursor(0, 1);
-    lcd->print("Zzz");
+    lcd.print("Zzz  Ml du verre");
+    lcd.setCursor(0, 1);
+    lcd.print("Zzz");
   }
   else if (currentState == PoulpiState::WATER_REMINDER)
   {
-    lcd->print("Boire de l'eau");
+    lcd.print("Boire de l'eau");
   }
   else
   {
@@ -60,9 +59,10 @@ void Screen::onStateChange()
   if (shouldStatePrintGlassSize)
   {
     int waterGlassSizeCol = LocalUtils::mlValueStartColOnScreen(waterGlassSizeInMlDisplayed);
-    lcd->setCursor(waterGlassSizeCol, 1);
-    lcd->print(waterGlassSizeInMlDisplayed);
-    lcd->print(" ml");
+    lcd.setCursor(waterGlassSizeCol, 1);
+    lcd.print(waterGlassSizeInMlDisplayed);
+    Serial.println(waterGlassSizeInMlDisplayed);
+    lcd.print(" ml");
   }
 }
 
@@ -109,7 +109,7 @@ void Screen::colorBackground()
     colorG = 30;
   }
 
-  this->lcd->setRGB(colorR, colorG, colorB);
+  lcd.setRGB(colorR, colorG, colorB);
 }
 
 String Screen::getRandomDescriptions(String *descriptions, int size)
@@ -122,15 +122,16 @@ void Screen::displayMessage(String message)
 {
   if (message.length() <= 16)
   {
-    this->lcd->print(message);
+    lcd.print(message);
   }
   else
   {
     String firstPart = message.substring(0, 16);
     String secondPart = message.substring(16, message.length());
 
-    this->lcd->print(firstPart);
-    this->lcd->setCursor(0, 1);
-    this->lcd->print(secondPart);
+    lcd.print(firstPart);
+    lcd.setCursor(0, 1);
+    lcd.print(secondPart);
+    Serial.println(secondPart);
   }
 }

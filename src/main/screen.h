@@ -14,21 +14,20 @@ class Screen
 {
 public:
   Screen();
-  void loop(States* states);
-  void setup(States* states);
+  void loop(States *states);
+  void setup(States *states);
   void colorBackground();
   void displayMessage(String message);
   int pin;
- 
+
 private:
   PoulpiState currentState;
   int nbDescriptorsPerState;
-  String* displayStrings;
-  String** randomDescriptions;
-  rgb_lcd* lcd;
+  String *displayStrings;
+  String **randomDescriptions;
   int waterGlassSizeInMlDisplayed;
 
   void onStateChange();
-  void updateLocalStateFromStates(States* states);
-  String getRandomDescriptions(String* descriptions, int size);
+  void updateLocalStateFromStates(States *states);
+  String getRandomDescriptions(String *descriptions, int size);
 };

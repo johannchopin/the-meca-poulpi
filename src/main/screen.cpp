@@ -61,7 +61,6 @@ void Screen::onStateChange()
     int waterGlassSizeCol = LocalUtils::mlValueStartColOnScreen(waterGlassSizeInMlDisplayed);
     lcd.setCursor(waterGlassSizeCol, 1);
     lcd.print(waterGlassSizeInMlDisplayed);
-    Serial.println(waterGlassSizeInMlDisplayed);
     lcd.print(" ml");
   }
 }
@@ -132,6 +131,5 @@ void Screen::displayMessage(String message)
     lcd.print(firstPart);
     lcd.setCursor(0, 1);
     lcd.print(secondPart);
-    Serial.println(secondPart);
   }
 }

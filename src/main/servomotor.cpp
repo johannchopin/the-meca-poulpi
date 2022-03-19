@@ -1,9 +1,16 @@
 #include "servomotor.h"
 
+/*
+!!!IMPORTANT
+
+Due to several bug he motor needed to bo deactivated.
+To do so we just comment all the hardware logic to still keep the hard work visible.
+*/
+
 void Servomotor::setup()
 {
-  this->motor.attach(this->pin);
-  this->motor.write(this->position);
+  // this->motor.attach(this->pin);
+  // this->motor.write(this->position);
 }
 
 void Servomotor::startTentaculeAnimation()
@@ -14,7 +21,7 @@ void Servomotor::startTentaculeAnimation()
 void Servomotor::stopTentaculeAnimation()
 {
   this->position = this->POSITION_DOWN;
-  this->motor.write(this->position);
+  // this->motor.write(this->position);
   this->isTentaculeAnimated = false;
 }
 
@@ -34,7 +41,7 @@ void Servomotor::toggleTentacule()
   }
 
   this->position = deg;
-  this->motor.write(this->position);
+  // this->motor.write(this->position);
 }
 
 void Servomotor::loop()

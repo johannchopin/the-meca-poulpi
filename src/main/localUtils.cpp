@@ -1,24 +1,28 @@
 #include "localUtils.h"
 
-String* LocalUtils::split(String phrase, String delimiter){
-  String* acc = new String[ITEMS_IN_LIST];
+String *LocalUtils::split(String phrase, String delimiter)
+{
+  String *acc = new String[ITEMS_IN_LIST];
   int count = 0;
   int pos = 0;
   String token;
-  while ((pos = phrase.indexOf(delimiter)) != -1) {
-      token = phrase.substring(0, pos);
-      acc[count] = token;
-      phrase.remove(0, pos);
-      count++;
+  while ((pos = phrase.indexOf(delimiter)) != -1)
+  {
+    token = phrase.substring(0, pos);
+    acc[count] = token;
+    phrase.remove(0, pos);
+    count++;
   }
   acc[count] = phrase;
   return acc;
 }
 
-int LocalUtils::countItemsInArray(String* array) {
-  int n=0;
+int LocalUtils::countItemsInArray(String *array)
+{
+  int n = 0;
   String p;
-  while (p!= '\0') {
+  while (p != '\0')
+  {
     n++;
     p = array[n];
   }
@@ -35,4 +39,11 @@ int availableMemory()
     ;
   free(buf);
   return size;
+}
+
+int LocalUtils::mlValueStartColOnScreen(int waterMl)
+{
+  return (waterMl == 0) ? 12 : (waterMl < 100) ? 11
+                           : (waterMl < 1000)  ? 10
+                                               : 9;
 }

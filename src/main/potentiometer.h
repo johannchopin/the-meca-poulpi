@@ -7,12 +7,14 @@
 
 class Potentiometer : public InoComponent, public InoComponentWithSinglePin
 {
-  public:
-    Potentiometer(int pin) : InoComponentWithSinglePin(pin){};
-    void setup();
-    void loop(States* states);
+public:
+  Potentiometer(int pin) : InoComponentWithSinglePin(pin){};
+  void setup();
+  void loop(States *states);
 
-  private:
-    int MAX_POTENTIOMETER_VALUE = 1023;
-    int MIN_POTENTIOMETER_VALUE = 0;
+private:
+  int MAX_POTENTIOMETER_VALUE = 1023;
+  int MIN_POTENTIOMETER_VALUE = 0;
+  unsigned long lastDebounceTime = 0;
+  unsigned long debounceDelay = 100;
 };

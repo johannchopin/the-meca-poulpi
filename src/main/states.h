@@ -19,9 +19,8 @@ public:
       WELCOME,
       SLEEPY,
       DOING_MEDITATION,
-      DOING_SPORT,
       DRINKING_WATER,
-  };
+      DOING_SPORT};
 
   // index are the values of the REMINDER states in the enum
   bool isReminderActive[REMINDER_AMOUNT] = {
@@ -69,6 +68,6 @@ private:
   PoulpiState current = PoulpiState::SLEEPY;
   PoulpiState lastReminderState = PoulpiState::SLEEPY;
   unsigned long lastStateChangeDebounceTime = millis();
-  unsigned long debounceStateChangeDelay = 3000; // in ms
+  unsigned long debounceStateChangeDelay = 3000;         // in ms
   unsigned long debounceStateWelcomeChangeDelay = 15500; // in ms
 };

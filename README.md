@@ -31,6 +31,6 @@ Rename the zip to "Servo.zip" before importing in Arduino IDE
     * [x] Primary Button - > accepte l'activité
 * [x] (dans un état de rappel) -> stateSwitchButtonstateSwitchButton -> décline l'activité -> retour au state SLEEPY
 * [ ] Les reminders doivent être évité lorsque leur state dans "isActive" est à faux (cf: goToNextReminder)
-* [ ] bug: dans un state REMINDER, appuyer sur le bouton bleu fait passer le poulpi dans un mauvais state
+* [x] bug: dans un state REMINDER, appuyer sur le bouton bleu fait passer le poulpi dans un mauvais state
   - au bout d'un petit nombre d'interaction avec le bouton bleu, le state `DRINKING_WATER` est 'remplacé' par le state `DOING_SPORT` (je suppose un problème d'incrémentation à un endroit du code)
 * [x] Potentiometer: refresh at a rate instead of waiting for potentiometer modifications 

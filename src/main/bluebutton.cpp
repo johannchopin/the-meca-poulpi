@@ -31,7 +31,7 @@ void BlueButton::onClickHandler(States *states)
   {
     states->setCurrent(PoulpiState::SLEEPY);
   }
-  else
+  else if (state != PoulpiState::DRINKING_WATER)
   {
     drinkOneGlass(states);
   }

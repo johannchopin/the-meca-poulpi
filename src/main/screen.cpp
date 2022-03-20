@@ -61,7 +61,6 @@ void Screen::onStateChange()
     int waterGlassSizeCol = LocalUtils::mlValueStartColOnScreen(waterGlassSizeInMlDisplayed);
     lcd.setCursor(waterGlassSizeCol, 1);
     lcd.print(waterGlassSizeInMlDisplayed);
-    Serial.println(waterGlassSizeInMlDisplayed);
     lcd.print(" ml");
   }
 }
@@ -81,8 +80,8 @@ void Screen::colorBackground()
   if (currentState == PoulpiState::MEDITATION_REMINDER || currentState == PoulpiState::DOING_MEDITATION)
   {
     colorR = 19;
-    colorB = 219;
-    colorG = 79;
+    colorB = 79;
+    colorG = 219;
   }
   else if (currentState == PoulpiState::WELCOME)
   {
@@ -132,6 +131,5 @@ void Screen::displayMessage(String message)
     lcd.print(firstPart);
     lcd.setCursor(0, 1);
     lcd.print(secondPart);
-    Serial.println(secondPart);
   }
 }

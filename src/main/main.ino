@@ -71,8 +71,9 @@ void songsController()
 
   if (state == PoulpiState::DOING_SPORT)
   {
-    Serial.println("DOING_SPORT");
-    buzzer->playTone(babyelephantwalkSong, BABYELEPHANTWALK_TEMPO);
+    buzzer->playTone(
+        musics[states->sportMusic],
+        musicDurations[states->sportMusic]);
   }
 }
 

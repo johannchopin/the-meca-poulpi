@@ -1,5 +1,6 @@
 #pragma once
 #include "Arduino.h"
+#include "songs.h"
 
 #define ITEMS_IN_LIST 30
 #define CARRIAGE_RETURN "\n"
@@ -33,10 +34,12 @@ typedef enum
   TAKE_ON_ME,
   BABY_ELEPHANT_WALK,
   BRAHAMS_LULLABY,
-  CANTINABAND,
-  GREENSLEVES,
-  MII_CHANNEL_MUSIC
+  CANTINABAND
 } Music;
+
+extern Song *musics[4];
+
+extern int musicDurations[4];
 
 typedef enum
 {

@@ -80,8 +80,8 @@ void Screen::colorBackground()
   if (currentState == PoulpiState::MEDITATION_REMINDER || currentState == PoulpiState::DOING_MEDITATION)
   {
     colorR = 19;
-    colorB = 219;
-    colorG = 79;
+    colorB = 79;
+    colorG = 219;
   }
   else if (currentState == PoulpiState::WELCOME)
   {

@@ -93,9 +93,10 @@ bool States::isAwaitingUserFeedback()
 
 void States::loop()
 {
+  int currentTime = millis();
   if (current == PoulpiState::WELCOME)
   {
-    bool leftWelcomeState = (millis() - lastStateChangeDebounceTime) > debounceStateWelcomeChangeDelay;
+    bool leftWelcomeState = (currentTime - lastStateChangeDebounceTime) > debounceStateWelcomeChangeDelay;
     if (leftWelcomeState)
     {
       setCurrent(PoulpiState::SLEEPY);
@@ -104,13 +105,13 @@ void States::loop()
   }
   else
   {
-    bool shouldStateGoNext = !isAwaitingUserFeedback() && (millis() - lastStateChangeDebounceTime) > debounceStateChangeDelay;
+    bool shouldStateGoNext = !isAwaitingUserFeedback() && (currentTime - lastStateChangeDebounceTime) > debounceStateChangeDelay;
 
     // custom behavior for driking water where the poulpi is happy for a certain amount of seconds before going to sleep again
-    if (current == PoulpiState::DRINKING_WATER && (millis() - lastStateChangeDebounceTime) > FIVE_SECONDS)
+    if (current == PoulpiState::DRINKING_WATER && (currentTime - lastStateChangeDebounceTime) > FIVE_SECONDS)
     {
       setCurrent(PoulpiState::SLEEPY);
-      lastStateChangeDebounceTime = millis();
+      resetTimer();
     }
     else if (shouldStateGoNext)
     {

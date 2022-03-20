@@ -48,13 +48,13 @@ void songsController()
   }
   if (state == PoulpiState::SPORT_REMINDER)
   {
-    Serial.println("SPORT");
+    Serial.println("SPORT_REMINDER");
     buzzer->playTone(takeOnMe, TAKE_ON_ME_TEMPO);
   }
 
   if (state == PoulpiState::TASK_REMINDER)
   {
-    Serial.println("TASKS");
+    Serial.println("TASK_REMINDER");
     buzzer->playTone(cantinaband, CANTINABAND_TEMPO);
   }
 
@@ -65,13 +65,13 @@ void songsController()
 
   if (state == PoulpiState::DOING_MEDITATION)
   {
-    Serial.println("MEDITATION");
+    Serial.println("DOING_MEDITATION");
     buzzer->playTone(lullaby, LULLABY_TEMPO);
   }
 
   if (state == PoulpiState::DOING_SPORT)
   {
-    Serial.println("DO_SPORT");
+    Serial.println("DOING_SPORT");
     buzzer->playTone(babyelephantwalkSong, BABYELEPHANTWALK_TEMPO);
   }
 }

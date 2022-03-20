@@ -27,8 +27,8 @@ Rename the zip to "Servo.zip" before importing in Arduino IDE
 
 * [x] Potentiomètre (inverser les valeurs)
 * [x] Ajuster screen avec les dernières features
-* [ ] (dans un état de rappel) 
-    * [ ] Primary Button - > accepte l'activité
+* [x] (dans un état de rappel) 
+    * [x] Primary Button - > accepte l'activité
 * [x] (dans un état de rappel) -> stateSwitchButtonstateSwitchButton -> décline l'activité -> retour au state SLEEPY
 * [ ] Les reminders doivent être évité lorsque leur state dans "isActive" est à faux (cf: goToNextReminder)
 * [ ] bug: dans un state REMINDER, appuyer sur le bouton bleu fait passer le poulpi dans un mauvais state

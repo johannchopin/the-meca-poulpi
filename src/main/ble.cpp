@@ -70,7 +70,7 @@ void Ble::loop(States *states)
         }
         if (sportMusicCharacteristic.written())
         {
-            states->sportMusic = sportMusicCharacteristic.value();
+            states->sportMusic = sportMusicCharacteristic.value() - 1; // index starts at 1 in app inventor
         }
     }
 }
